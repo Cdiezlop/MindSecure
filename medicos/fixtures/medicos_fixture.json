@@ -1,0 +1,72 @@
+[
+  {
+    "model": "medicos.medico",
+    "pk": "1036967493",
+    "fields": {
+      "nombre": "Cristian David Diez Lopez",
+      "puesto": "Psiquiatra",
+      "email": "Cristian.diez@udea.edu.co",
+      "clave_acceso": "1036967493"
+    }
+  },
+  {
+    "model": "medicos.medico",
+    "pk": "1000569835",
+    "fields": {
+      "nombre": "Eliana Brand Agudelo",
+      "puesto": "Médico general",
+      "email": "eliana.brand@udea.edu.co",
+      "clave_acceso": "1000569835"
+    }
+  },
+  {
+    "model": "medicos.medico",
+    "pk": "1041440312",
+    "fields": {
+      "nombre": "Daniel Alexander Herrera Henao",
+      "puesto": "Psiquiatra infantil",
+      "email": "daniel.herrerah@udea.edu.co",
+      "clave_acceso": "1041440312"
+    }
+  },
+  {
+    "model": "medicos.medico",
+    "pk": "1001234567",
+    "fields": {
+      "nombre": "Mariana Vélez",
+      "puesto": "Psiquiatra",
+      "email": "mariana@hospital.com",
+      "clave_acceso": "1001234567"
+    }
+  },
+  {
+    "model": "medicos.medico",
+    "pk": "1002345678",
+    "fields": {
+      "nombre": "Luis Camargo",
+      "puesto": "Neuropsiquiatra",
+      "email": "luis@hospital.com",
+      "clave_acceso": "1002345678"
+    }
+  },
+  {
+    "model": "medicos.medico",
+    "pk": "1003456789",
+    "fields": {
+      "nombre": "Mateo Restrepo",
+      "puesto": "Médico internista",
+      "email": "mateo@hospital.com",
+      "clave_acceso": "1003456789"
+    }
+  },
+  {
+    "model": "medicos.medico",
+    "pk": "1004567890",
+    "fields": {
+      "nombre": "Sofía Cardona",
+      "puesto": "Médico general",
+      "email": "sofía@hospital.com",
+      "clave_acceso": "1004567890"
+    }
+  }
+]

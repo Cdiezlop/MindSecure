@@ -1,0 +1,28 @@
+# 🧠 MindSecure
+
+Sistema de gestión de historias clínicas para hospitales psiquiátricos.
+
+## 🚀 Tecnologías
+- Django + Django REST Framework (backend)
+- PostgreSQL (opcional)
+- Vue.js + Tailwind CSS (frontend)
+- JSON Fixtures para carga inicial
+
+## 👨‍💻 Integrantes
+- Cristian Diez (Base de datos)
+- Daniel Herrera (Backend/API)
+- Eliana Brand (Frontend)
+
+## 🛠️ Cómo iniciar
+
+```bash
+# Instalar dependencias
+pip install -r requirements.txt
+
+# Aplicar migraciones y cargar datos
+python manage.py migrate
+python manage.py loaddata medicos/fixtures/medicos_fixture.json
+python manage.py loaddata pacientes/fixtures/pacientes_fixture.json
+
+# Correr servidor
+python manage.py runserver

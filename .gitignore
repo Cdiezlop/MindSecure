@@ -1,0 +1,64 @@
+# Entorno virtual (Windows/Linux/macOS)
+env/
+venv/
+ENV/
+*.env
+
+# Archivos compilados de Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Base de datos local de desarrollo
+db.sqlite3
+
+# Archivos de migración innecesarios (opcionales)
+**/migrations/*.pyc
+**/migrations/__pycache__/
+# puedes ignorar *.py si no los estás versionando
+
+# Archivos de configuración de VSCode y otros IDEs
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Archivos de log y caché
+*.log
+*.pot
+*.mo
+*.pyc
+*.pyo
+.DS_Store
+
+# Archivos de test coverage
+htmlcov/
+.coverage
+.tox/
+.nox/
+.cache/
+coverage.xml
+nosetests.xml
+test_*.log
+junit*.xml
+
+# Archivos generados por Django
+staticfiles/
+media/
+
+# Node (frontend Vue)
+node_modules/
+dist/
+frontend/.env.local
+frontend/.env.*.local
+
+# Tailwind JIT/cache
+*.css.map
+*.js.map
+
+# Otros archivos de despliegue
+*.sqlite3
+*.bak
+*.swp
+*.tmp
+

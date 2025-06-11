@@ -1,0 +1,52 @@
+Mind-Secure/
+├── manage.py
+├── db.sqlite3                      ← (opcional en desarrollo)
+├── requirements.txt               ← ✅ Backend Django + DRF + DB
+├── README_DB.md                   ← ✅ Documentación del trabajo de Cristian
+│
+├── Mind_Secure/                   ← Configuración principal del proyecto
+│   ├── __init__.py
+│   ├── settings.py
+│   ├── urls.py
+│   ├── asgi.py
+│   └── wsgi.py
+│
+├── medicos/
+│   ├── __init__.py
+│   ├── admin.py                   ← ✅ Modelo registrado
+│   ├── apps.py
+│   ├── models.py                  ← ✅ Modelo Medico
+│   ├── serializers.py             ← ✅ Serializer Medico
+│   ├── urls.py
+│   ├── views.py                   ← (desarrollado por Daniel)
+│   ├── tests.py
+│   └── fixtures/
+│       └── medicos_fixture.json   ← ✅ 7 médicos listos para cargar
+│
+├── pacientes/
+│   ├── __init__.py
+│   ├── admin.py                   ← ✅ Modelo registrado
+│   ├── apps.py
+│   ├── models.py                  ← ✅ Modelo Paciente con eventos
+│   ├── serializers.py             ← ✅ Serializer Paciente
+│   ├── urls.py
+│   ├── views.py                   ← (desarrollado por Daniel)
+│   ├── tests.py
+│   └── fixtures/
+│       └── pacientes_fixture.json ← ✅ 40 pacientes, muchos con eventos
+
+
+
+
+####  PARA ELIANA CREAR: 
+
+│
+├── frontend/                      ← (opcional para Eliana)
+│   ├── package.json               ← Vue + Tailwind
+│   ├── tailwind.config.js         ← (crear con npx tailwindcss init -p)
+│   ├── postcss.config.js          ← (crear automáticamente)
+│   ├── vite.config.js             ← (opcional para Vite)
+│   └── src/
+│       ├── main.js
+│       ├── App.vue
+│       └── components/

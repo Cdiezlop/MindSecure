@@ -1,0 +1,963 @@
+[
+  {
+    "model": "pacientes.paciente",
+    "pk": "1036967493",
+    "fields": {
+      "nombre_paciente": "Cristian David Diez Lopez",
+      "edad": 25,
+      "genero": "Masculino",
+      "fecha_nacimiento": "2000-06-15",
+      "motivo_consulta": "Ideación suicida",
+      "amnesis_psiquiatrica": "Ansiedad generalizada",
+      "tratamiento": "Psicoterapia dialectico-conductual",
+      "plan_terapeutico": "Observación 48h",
+      "fecha_ingreso": "2025-06-08",
+      "eventos": [
+        {
+          "fecha": "2025-06-09",
+          "medico": "1003456789 - Mateo Restrepo",
+          "observacion": "Se administró medicación sin efectos secundarios."
+        }
+      ]
+    }
+  },
+  {
+    "model": "pacientes.paciente",
+    "pk": "1000569835",
+    "fields": {
+      "nombre_paciente": "Eliana Brand Agudelo",
+      "edad": 20,
+      "genero": "Femenino",
+      "fecha_nacimiento": "2005-06-14",
+      "motivo_consulta": "Ansiedad generalizada",
+      "amnesis_psiquiatrica": "Trastorno de ansiedad",
+      "tratamiento": "ISRS",
+      "plan_terapeutico": "Sesiones semanales",
+      "fecha_ingreso": "2025-06-08",
+      "eventos": [
+        {
+          "fecha": "2025-06-07",
+          "medico": "1041440312 - Daniel Alexander Herrera Henao",
+          "observacion": "Se administró medicación sin efectos secundarios."
+        },
+        {
+          "fecha": "2025-06-04",
+          "medico": "1004567890 - Sofía Cardona",
+          "observacion": "Se administró medicación sin efectos secundarios."
+        },
+        {
+          "fecha": "2025-06-07",
+          "medico": "1036967493 - Cristian David Diez Lopez",
+          "observacion": "Comportamiento estable durante las últimas 24 horas."
+        }
+      ]
+    }
+  },
+  {
+    "model": "pacientes.paciente",
+    "pk": "1041440312",
+    "fields": {
+      "nombre_paciente": "Daniel Alexander Herrera Henao",
+      "edad": 20,
+      "genero": "Masculino",
+      "fecha_nacimiento": "2005-06-14",
+      "motivo_consulta": "Ansiedad generalizada",
+      "amnesis_psiquiatrica": "Esquizofrenia paranoide",
+      "tratamiento": "Psicoterapia dialectico-conductual",
+      "plan_terapeutico": "Revisión semanal con psiquiatra",
+      "fecha_ingreso": "2025-06-08",
+      "eventos": [
+        {
+          "fecha": "2025-06-09",
+          "medico": "1004567890 - Sofía Cardona",
+          "observacion": "Crisis leve manejada sin complicaciones."
+        },
+        {
+          "fecha": "2025-06-04",
+          "medico": "1004567890 - Sofía Cardona",
+          "observacion": "Se recomienda seguimiento con el psiquiatra de turno."
+        }
+      ]
+    }
+  },
+  {
+    "model": "pacientes.paciente",
+    "pk": "200000001",
+    "fields": {
+      "nombre_paciente": "Laura Ríos",
+      "edad": 58,
+      "genero": "Femenino",
+      "fecha_nacimiento": "1967-06-24",
+      "motivo_consulta": "Trastorno del sueño",
+      "amnesis_psiquiatrica": "Trastorno de ansiedad",
+      "tratamiento": "Melatonina",
+      "plan_terapeutico": "Observación 48h",
+      "fecha_ingreso": "2025-06-08",
+      "eventos": [
+        {
+          "fecha": "2025-06-04",
+          "medico": "1001234567 - Mariana Vélez",
+          "observacion": "Crisis leve manejada sin complicaciones."
+        },
+        {
+          "fecha": "2025-06-06",
+          "medico": "1036967493 - Cristian David Diez Lopez",
+          "observacion": "No se observaron cambios relevantes."
+        }
+      ]
+    }
+  },
+  {
+    "model": "pacientes.paciente",
+    "pk": "200000002",
+    "fields": {
+      "nombre_paciente": "Carlos Díaz",
+      "edad": 40,
+      "genero": "Masculino",
+      "fecha_nacimiento": "1985-06-19",
+      "motivo_consulta": "Trastorno del sueño",
+      "amnesis_psiquiatrica": "Psicosis reactiva breve",
+      "tratamiento": "Melatonina",
+      "plan_terapeutico": "Supervisión diaria",
+      "fecha_ingreso": "2025-06-08",
+      "eventos": []
+    }
+  },
+  {
+    "model": "pacientes.paciente",
+    "pk": "200000003",
+    "fields": {
+      "nombre_paciente": "Juliana Gómez",
+      "edad": 23,
+      "genero": "Femenino",
+      "fecha_nacimiento": "2002-06-15",
+      "motivo_consulta": "Ansiedad generalizada",
+      "amnesis_psiquiatrica": "Psicosis reactiva breve",
+      "tratamiento": "Antipsicóticos",
+      "plan_terapeutico": "Sesiones semanales",
+      "fecha_ingreso": "2025-06-08",
+      "eventos": [
+        {
+          "fecha": "2025-06-05",
+          "medico": "1001234567 - Mariana Vélez",
+          "observacion": "Se recomienda seguimiento con el psiquiatra de turno."
+        }
+      ]
+    }
+  },
+  {
+    "model": "pacientes.paciente",
+    "pk": "200000004",
+    "fields": {
+      "nombre_paciente": "Diego Mejía",
+      "edad": 50,
+      "genero": "Masculino",
+      "fecha_nacimiento": "1975-06-22",
+      "motivo_consulta": "Ansiedad generalizada",
+      "amnesis_psiquiatrica": "Trastorno de ansiedad",
+      "tratamiento": "Antipsicóticos",
+      "plan_terapeutico": "Seguimiento quincenal",
+      "fecha_ingreso": "2025-06-08",
+      "eventos": []
+    }
+  },
+  {
+    "model": "pacientes.paciente",
+    "pk": "200000005",
+    "fields": {
+      "nombre_paciente": "Camila Hernández",
+      "edad": 23,
+      "genero": "Femenino",
+      "fecha_nacimiento": "2002-06-15",
+      "motivo_consulta": "Ansiedad generalizada",
+      "amnesis_psiquiatrica": "Esquizofrenia paranoide",
+      "tratamiento": "Antipsicóticos",
+      "plan_terapeutico": "Sesiones semanales",
+      "fecha_ingreso": "2025-06-08",
+      "eventos": []
+    }
+  },
+  {
+    "model": "pacientes.paciente",
+    "pk": "200000006",
+    "fields": {
+      "nombre_paciente": "Manuel Torres",
+      "edad": 44,
+      "genero": "Masculino",
+      "fecha_nacimiento": "1981-06-20",
+      "motivo_consulta": "Ansiedad generalizada",
+      "amnesis_psiquiatrica": "Trastorno de ansiedad",
+      "tratamiento": "Litio",
+      "plan_terapeutico": "Observación 48h",
+      "fecha_ingreso": "2025-06-08",
+      "eventos": []
+    }
+  },
+  {
+    "model": "pacientes.paciente",
+    "pk": "200000007",
+    "fields": {
+      "nombre_paciente": "Daniela Cano",
+      "edad": 41,
+      "genero": "Masculino",
+      "fecha_nacimiento": "1984-06-19",
+      "motivo_consulta": "Ansiedad generalizada",
+      "amnesis_psiquiatrica": "Trastorno bipolar tipo II",
+      "tratamiento": "Melatonina",
+      "plan_terapeutico": "Seguimiento quincenal",
+      "fecha_ingreso": "2025-06-08",
+      "eventos": [
+        {
+          "fecha": "2025-06-06",
+          "medico": "1000569835 - Eliana Brand Agudelo",
+          "observacion": "No se observaron cambios relevantes."
+        },
+        {
+          "fecha": "2025-06-08",
+          "medico": "1041440312 - Daniel Alexander Herrera Henao",
+          "observacion": "Paciente expresó preocupación por el tratamiento."
+        }
+      ]
+    }
+  },
+  {
+    "model": "pacientes.paciente",
+    "pk": "200000008",
+    "fields": {
+      "nombre_paciente": "Alejandro Pérez",
+      "edad": 45,
+      "genero": "Femenino",
+      "fecha_nacimiento": "1980-06-20",
+      "motivo_consulta": "Ansiedad generalizada",
+      "amnesis_psiquiatrica": "Psicosis reactiva breve",
+      "tratamiento": "Melatonina",
+      "plan_terapeutico": "Seguimiento quincenal",
+      "fecha_ingreso": "2025-06-08",
+      "eventos": [
+        {
+          "fecha": "2025-06-06",
+          "medico": "1003456789 - Mateo Restrepo",
+          "observacion": "Comportamiento estable durante las últimas 24 horas."
+        },
+        {
+          "fecha": "2025-06-04",
+          "medico": "1003456789 - Mateo Restrepo",
+          "observacion": "Crisis leve manejada sin complicaciones."
+        },
+        {
+          "fecha": "2025-06-05",
+          "medico": "1004567890 - Sofía Cardona",
+          "observacion": "El paciente mostró mejoría significativa tras la sesión."
+        }
+      ]
+    }
+  },
+  {
+    "model": "pacientes.paciente",
+    "pk": "200000009",
+    "fields": {
+      "nombre_paciente": "Mónica Vargas",
+      "edad": 28,
+      "genero": "Femenino",
+      "fecha_nacimiento": "1997-06-16",
+      "motivo_consulta": "Alucinaciones auditivas",
+      "amnesis_psiquiatrica": "Trastorno bipolar tipo II",
+      "tratamiento": "Litio",
+      "plan_terapeutico": "Sesiones semanales",
+      "fecha_ingreso": "2025-06-08",
+      "eventos": [
+        {
+          "fecha": "2025-06-08",
+          "medico": "1036967493 - Cristian David Diez Lopez",
+          "observacion": "Paciente expresó preocupación por el tratamiento."
+        },
+        {
+          "fecha": "2025-06-07",
+          "medico": "1041440312 - Daniel Alexander Herrera Henao",
+          "observacion": "Crisis leve manejada sin complicaciones."
+        }
+      ]
+    }
+  },
+  {
+    "model": "pacientes.paciente",
+    "pk": "2000000010",
+    "fields": {
+      "nombre_paciente": "Julián Castro",
+      "edad": 37,
+      "genero": "Masculino",
+      "fecha_nacimiento": "1988-06-18",
+      "motivo_consulta": "Ideación suicida",
+      "amnesis_psiquiatrica": "Trastorno de ansiedad",
+      "tratamiento": "Psicoterapia dialectico-conductual",
+      "plan_terapeutico": "Sesiones semanales",
+      "fecha_ingreso": "2025-06-08",
+      "eventos": []
+    }
+  },
+  {
+    "model": "pacientes.paciente",
+    "pk": "2000000011",
+    "fields": {
+      "nombre_paciente": "Paula Quintero",
+      "edad": 33,
+      "genero": "Masculino",
+      "fecha_nacimiento": "1992-06-17",
+      "motivo_consulta": "Ansiedad generalizada",
+      "amnesis_psiquiatrica": "Psicosis reactiva breve",
+      "tratamiento": "Melatonina",
+      "plan_terapeutico": "Seguimiento quincenal",
+      "fecha_ingreso": "2025-06-08",
+      "eventos": [
+        {
+          "fecha": "2025-06-05",
+          "medico": "1036967493 - Cristian David Diez Lopez",
+          "observacion": "Se administró medicación sin efectos secundarios."
+        },
+        {
+          "fecha": "2025-06-06",
+          "medico": "1003456789 - Mateo Restrepo",
+          "observacion": "Crisis leve manejada sin complicaciones."
+        },
+        {
+          "fecha": "2025-06-09",
+          "medico": "1001234567 - Mariana Vélez",
+          "observacion": "Comportamiento estable durante las últimas 24 horas."
+        }
+      ]
+    }
+  },
+  {
+    "model": "pacientes.paciente",
+    "pk": "2000000012",
+    "fields": {
+      "nombre_paciente": "Héctor Ramírez",
+      "edad": 31,
+      "genero": "Masculino",
+      "fecha_nacimiento": "1994-06-17",
+      "motivo_consulta": "Crisis de pánico",
+      "amnesis_psiquiatrica": "Esquizofrenia paranoide",
+      "tratamiento": "Antipsicóticos",
+      "plan_terapeutico": "Sesiones semanales",
+      "fecha_ingreso": "2025-06-08",
+      "eventos": []
+    }
+  },
+  {
+    "model": "pacientes.paciente",
+    "pk": "2000000013",
+    "fields": {
+      "nombre_paciente": "Valentina Osorio",
+      "edad": 59,
+      "genero": "Masculino",
+      "fecha_nacimiento": "1966-06-24",
+      "motivo_consulta": "Alucinaciones auditivas",
+      "amnesis_psiquiatrica": "Trastorno límite de la personalidad",
+      "tratamiento": "ISRS",
+      "plan_terapeutico": "Supervisión diaria",
+      "fecha_ingreso": "2025-06-08",
+      "eventos": [
+        {
+          "fecha": "2025-06-05",
+          "medico": "1003456789 - Mateo Restrepo",
+          "observacion": "Comportamiento estable durante las últimas 24 horas."
+        },
+        {
+          "fecha": "2025-06-09",
+          "medico": "1000569835 - Eliana Brand Agudelo",
+          "observacion": "Se recomienda seguimiento con el psiquiatra de turno."
+        },
+        {
+          "fecha": "2025-06-09",
+          "medico": "1001234567 - Mariana Vélez",
+          "observacion": "Se indica ajuste de medicación para evaluación."
+        }
+      ]
+    }
+  },
+  {
+    "model": "pacientes.paciente",
+    "pk": "2000000014",
+    "fields": {
+      "nombre_paciente": "Andrés Roldán",
+      "edad": 54,
+      "genero": "Masculino",
+      "fecha_nacimiento": "1971-06-23",
+      "motivo_consulta": "Ansiedad generalizada",
+      "amnesis_psiquiatrica": "Trastorno de ansiedad",
+      "tratamiento": "Terapia cognitivo-conductual",
+      "plan_terapeutico": "Sesiones semanales",
+      "fecha_ingreso": "2025-06-08",
+      "eventos": [
+        {
+          "fecha": "2025-06-08",
+          "medico": "1000569835 - Eliana Brand Agudelo",
+          "observacion": "Se recomienda seguimiento con el psiquiatra de turno."
+        },
+        {
+          "fecha": "2025-06-07",
+          "medico": "1004567890 - Sofía Cardona",
+          "observacion": "Paciente expresó preocupación por el tratamiento."
+        }
+      ]
+    }
+  },
+  {
+    "model": "pacientes.paciente",
+    "pk": "2000000015",
+    "fields": {
+      "nombre_paciente": "María José Salazar",
+      "edad": 47,
+      "genero": "Femenino",
+      "fecha_nacimiento": "1978-06-21",
+      "motivo_consulta": "Trastorno del sueño",
+      "amnesis_psiquiatrica": "Trastorno de ansiedad",
+      "tratamiento": "Melatonina",
+      "plan_terapeutico": "Revisión semanal con psiquiatra",
+      "fecha_ingreso": "2025-06-08",
+      "eventos": [
+        {
+          "fecha": "2025-06-07",
+          "medico": "1041440312 - Daniel Alexander Herrera Henao",
+          "observacion": "Comportamiento estable durante las últimas 24 horas."
+        },
+        {
+          "fecha": "2025-06-09",
+          "medico": "1004567890 - Sofía Cardona",
+          "observacion": "Se indica ajuste de medicación para evaluación."
+        },
+        {
+          "fecha": "2025-06-07",
+          "medico": "1004567890 - Sofía Cardona",
+          "observacion": "El paciente mostró mejoría significativa tras la sesión."
+        }
+      ]
+    }
+  },
+  {
+    "model": "pacientes.paciente",
+    "pk": "2000000016",
+    "fields": {
+      "nombre_paciente": "Federico Ruiz",
+      "edad": 53,
+      "genero": "Femenino",
+      "fecha_nacimiento": "1972-06-22",
+      "motivo_consulta": "Alucinaciones auditivas",
+      "amnesis_psiquiatrica": "Trastorno bipolar tipo II",
+      "tratamiento": "Litio",
+      "plan_terapeutico": "Observación 48h",
+      "fecha_ingreso": "2025-06-08",
+      "eventos": []
+    }
+  },
+  {
+    "model": "pacientes.paciente",
+    "pk": "2000000017",
+    "fields": {
+      "nombre_paciente": "Ana María Gómez",
+      "edad": 52,
+      "genero": "Femenino",
+      "fecha_nacimiento": "1973-06-22",
+      "motivo_consulta": "Crisis de pánico",
+      "amnesis_psiquiatrica": "Psicosis reactiva breve",
+      "tratamiento": "Melatonina",
+      "plan_terapeutico": "Revisión semanal con psiquiatra",
+      "fecha_ingreso": "2025-06-08",
+      "eventos": []
+    }
+  },
+  {
+    "model": "pacientes.paciente",
+    "pk": "2000000018",
+    "fields": {
+      "nombre_paciente": "Sebastián Álvarez",
+      "edad": 52,
+      "genero": "Masculino",
+      "fecha_nacimiento": "1973-06-22",
+      "motivo_consulta": "Trastorno del sueño",
+      "amnesis_psiquiatrica": "Psicosis reactiva breve",
+      "tratamiento": "ISRS",
+      "plan_terapeutico": "Revisión semanal con psiquiatra",
+      "fecha_ingreso": "2025-06-08",
+      "eventos": []
+    }
+  },
+  {
+    "model": "pacientes.paciente",
+    "pk": "2000000019",
+    "fields": {
+      "nombre_paciente": "Lucía Torres",
+      "edad": 45,
+      "genero": "Masculino",
+      "fecha_nacimiento": "1980-06-20",
+      "motivo_consulta": "Crisis de pánico",
+      "amnesis_psiquiatrica": "Trastorno de ansiedad",
+      "tratamiento": "Melatonina",
+      "plan_terapeutico": "Observación 48h",
+      "fecha_ingreso": "2025-06-08",
+      "eventos": [
+        {
+          "fecha": "2025-06-05",
+          "medico": "1004567890 - Sofía Cardona",
+          "observacion": "No se observaron cambios relevantes."
+        },
+        {
+          "fecha": "2025-06-06",
+          "medico": "1000569835 - Eliana Brand Agudelo",
+          "observacion": "Se administró medicación sin efectos secundarios."
+        },
+        {
+          "fecha": "2025-06-06",
+          "medico": "1004567890 - Sofía Cardona",
+          "observacion": "Paciente expresó preocupación por el tratamiento."
+        }
+      ]
+    }
+  },
+  {
+    "model": "pacientes.paciente",
+    "pk": "2000000020",
+    "fields": {
+      "nombre_paciente": "Miguel Ángel Mora",
+      "edad": 46,
+      "genero": "Masculino",
+      "fecha_nacimiento": "1979-06-21",
+      "motivo_consulta": "Alucinaciones auditivas",
+      "amnesis_psiquiatrica": "Trastorno bipolar tipo II",
+      "tratamiento": "Melatonina",
+      "plan_terapeutico": "Supervisión diaria",
+      "fecha_ingreso": "2025-06-08",
+      "eventos": [
+        {
+          "fecha": "2025-06-05",
+          "medico": "1004567890 - Sofía Cardona",
+          "observacion": "Se administró medicación sin efectos secundarios."
+        },
+        {
+          "fecha": "2025-06-06",
+          "medico": "1036967493 - Cristian David Diez Lopez",
+          "observacion": "Se recomienda seguimiento con el psiquiatra de turno."
+        }
+      ]
+    }
+  },
+  {
+    "model": "pacientes.paciente",
+    "pk": "2000000021",
+    "fields": {
+      "nombre_paciente": "Jimena García",
+      "edad": 24,
+      "genero": "Masculino",
+      "fecha_nacimiento": "2001-06-15",
+      "motivo_consulta": "Ansiedad generalizada",
+      "amnesis_psiquiatrica": "Trastorno bipolar tipo II",
+      "tratamiento": "Antipsicóticos",
+      "plan_terapeutico": "Seguimiento quincenal",
+      "fecha_ingreso": "2025-06-08",
+      "eventos": [
+        {
+          "fecha": "2025-06-04",
+          "medico": "1004567890 - Sofía Cardona",
+          "observacion": "Se administró medicación sin efectos secundarios."
+        }
+      ]
+    }
+  },
+  {
+    "model": "pacientes.paciente",
+    "pk": "2000000022",
+    "fields": {
+      "nombre_paciente": "Esteban López",
+      "edad": 59,
+      "genero": "Femenino",
+      "fecha_nacimiento": "1966-06-24",
+      "motivo_consulta": "Ansiedad generalizada",
+      "amnesis_psiquiatrica": "Trastorno de ansiedad",
+      "tratamiento": "Psicoterapia dialectico-conductual",
+      "plan_terapeutico": "Sesiones semanales",
+      "fecha_ingreso": "2025-06-08",
+      "eventos": [
+        {
+          "fecha": "2025-06-04",
+          "medico": "1001234567 - Mariana Vélez",
+          "observacion": "Se administró medicación sin efectos secundarios."
+        },
+        {
+          "fecha": "2025-06-05",
+          "medico": "1004567890 - Sofía Cardona",
+          "observacion": "Se indica ajuste de medicación para evaluación."
+        }
+      ]
+    }
+  },
+  {
+    "model": "pacientes.paciente",
+    "pk": "2000000023",
+    "fields": {
+      "nombre_paciente": "Laura Sánchez",
+      "edad": 57,
+      "genero": "Masculino",
+      "fecha_nacimiento": "1968-06-23",
+      "motivo_consulta": "Ansiedad generalizada",
+      "amnesis_psiquiatrica": "Psicosis reactiva breve",
+      "tratamiento": "Terapia cognitivo-conductual",
+      "plan_terapeutico": "Observación 48h",
+      "fecha_ingreso": "2025-06-08",
+      "eventos": []
+    }
+  },
+  {
+    "model": "pacientes.paciente",
+    "pk": "2000000024",
+    "fields": {
+      "nombre_paciente": "David Pineda",
+      "edad": 45,
+      "genero": "Femenino",
+      "fecha_nacimiento": "1980-06-20",
+      "motivo_consulta": "Conductas agresivas",
+      "amnesis_psiquiatrica": "Trastorno de ansiedad",
+      "tratamiento": "Melatonina",
+      "plan_terapeutico": "Supervisión diaria",
+      "fecha_ingreso": "2025-06-08",
+      "eventos": [
+        {
+          "fecha": "2025-06-04",
+          "medico": "1041440312 - Daniel Alexander Herrera Henao",
+          "observacion": "El paciente mostró mejoría significativa tras la sesión."
+        },
+        {
+          "fecha": "2025-06-04",
+          "medico": "1000569835 - Eliana Brand Agudelo",
+          "observacion": "El paciente mostró mejoría significativa tras la sesión."
+        }
+      ]
+    }
+  },
+  {
+    "model": "pacientes.paciente",
+    "pk": "2000000025",
+    "fields": {
+      "nombre_paciente": "Sara Mendoza",
+      "edad": 58,
+      "genero": "Masculino",
+      "fecha_nacimiento": "1967-06-24",
+      "motivo_consulta": "Ideación suicida",
+      "amnesis_psiquiatrica": "Psicosis reactiva breve",
+      "tratamiento": "Terapia cognitivo-conductual",
+      "plan_terapeutico": "Supervisión diaria",
+      "fecha_ingreso": "2025-06-08",
+      "eventos": [
+        {
+          "fecha": "2025-06-09",
+          "medico": "1036967493 - Cristian David Diez Lopez",
+          "observacion": "Paciente expresó preocupación por el tratamiento."
+        }
+      ]
+    }
+  },
+  {
+    "model": "pacientes.paciente",
+    "pk": "2000000026",
+    "fields": {
+      "nombre_paciente": "Nicolás Gutiérrez",
+      "edad": 18,
+      "genero": "Masculino",
+      "fecha_nacimiento": "2007-06-14",
+      "motivo_consulta": "Trastorno del sueño",
+      "amnesis_psiquiatrica": "Trastorno depresivo mayor",
+      "tratamiento": "Litio",
+      "plan_terapeutico": "Revisión semanal con psiquiatra",
+      "fecha_ingreso": "2025-06-08",
+      "eventos": [
+        {
+          "fecha": "2025-06-05",
+          "medico": "1003456789 - Mateo Restrepo",
+          "observacion": "Se recomienda seguimiento con el psiquiatra de turno."
+        },
+        {
+          "fecha": "2025-06-04",
+          "medico": "1004567890 - Sofía Cardona",
+          "observacion": "Crisis leve manejada sin complicaciones."
+        },
+        {
+          "fecha": "2025-06-05",
+          "medico": "1002345678 - Luis Camargo",
+          "observacion": "El paciente mostró mejoría significativa tras la sesión."
+        }
+      ]
+    }
+  },
+  {
+    "model": "pacientes.paciente",
+    "pk": "2000000027",
+    "fields": {
+      "nombre_paciente": "Andrea Herrera",
+      "edad": 49,
+      "genero": "Femenino",
+      "fecha_nacimiento": "1976-06-21",
+      "motivo_consulta": "Conductas agresivas",
+      "amnesis_psiquiatrica": "Psicosis reactiva breve",
+      "tratamiento": "Melatonina",
+      "plan_terapeutico": "Revisión semanal con psiquiatra",
+      "fecha_ingreso": "2025-06-08",
+      "eventos": [
+        {
+          "fecha": "2025-06-06",
+          "medico": "1041440312 - Daniel Alexander Herrera Henao",
+          "observacion": "No se observaron cambios relevantes."
+        },
+        {
+          "fecha": "2025-06-08",
+          "medico": "1001234567 - Mariana Vélez",
+          "observacion": "Comportamiento estable durante las últimas 24 horas."
+        },
+        {
+          "fecha": "2025-06-05",
+          "medico": "1004567890 - Sofía Cardona",
+          "observacion": "El paciente mostró mejoría significativa tras la sesión."
+        }
+      ]
+    }
+  },
+  {
+    "model": "pacientes.paciente",
+    "pk": "2000000028",
+    "fields": {
+      "nombre_paciente": "Tomás Gil",
+      "edad": 19,
+      "genero": "Femenino",
+      "fecha_nacimiento": "2006-06-14",
+      "motivo_consulta": "Trastorno del sueño",
+      "amnesis_psiquiatrica": "Trastorno depresivo mayor",
+      "tratamiento": "Terapia cognitivo-conductual",
+      "plan_terapeutico": "Revisión semanal con psiquiatra",
+      "fecha_ingreso": "2025-06-08",
+      "eventos": []
+    }
+  },
+  {
+    "model": "pacientes.paciente",
+    "pk": "2000000029",
+    "fields": {
+      "nombre_paciente": "Isabela Zapata",
+      "edad": 58,
+      "genero": "Masculino",
+      "fecha_nacimiento": "1967-06-24",
+      "motivo_consulta": "Trastorno del sueño",
+      "amnesis_psiquiatrica": "Trastorno límite de la personalidad",
+      "tratamiento": "Antipsicóticos",
+      "plan_terapeutico": "Revisión semanal con psiquiatra",
+      "fecha_ingreso": "2025-06-08",
+      "eventos": [
+        {
+          "fecha": "2025-06-07",
+          "medico": "1003456789 - Mateo Restrepo",
+          "observacion": "Paciente expresó preocupación por el tratamiento."
+        },
+        {
+          "fecha": "2025-06-07",
+          "medico": "1036967493 - Cristian David Diez Lopez",
+          "observacion": "Paciente expresó preocupación por el tratamiento."
+        },
+        {
+          "fecha": "2025-06-05",
+          "medico": "1002345678 - Luis Camargo",
+          "observacion": "Paciente expresó preocupación por el tratamiento."
+        }
+      ]
+    }
+  },
+  {
+    "model": "pacientes.paciente",
+    "pk": "2000000030",
+    "fields": {
+      "nombre_paciente": "Emilio Franco",
+      "edad": 57,
+      "genero": "Femenino",
+      "fecha_nacimiento": "1968-06-23",
+      "motivo_consulta": "Ansiedad generalizada",
+      "amnesis_psiquiatrica": "Esquizofrenia paranoide",
+      "tratamiento": "Terapia cognitivo-conductual",
+      "plan_terapeutico": "Seguimiento quincenal",
+      "fecha_ingreso": "2025-06-08",
+      "eventos": []
+    }
+  },
+  {
+    "model": "pacientes.paciente",
+    "pk": "2000000031",
+    "fields": {
+      "nombre_paciente": "Catalina Ortega",
+      "edad": 34,
+      "genero": "Masculino",
+      "fecha_nacimiento": "1991-06-18",
+      "motivo_consulta": "Crisis de pánico",
+      "amnesis_psiquiatrica": "Trastorno bipolar tipo II",
+      "tratamiento": "Antipsicóticos",
+      "plan_terapeutico": "Sesiones semanales",
+      "fecha_ingreso": "2025-06-08",
+      "eventos": [
+        {
+          "fecha": "2025-06-05",
+          "medico": "1003456789 - Mateo Restrepo",
+          "observacion": "Paciente expresó preocupación por el tratamiento."
+        },
+        {
+          "fecha": "2025-06-08",
+          "medico": "1002345678 - Luis Camargo",
+          "observacion": "Paciente expresó preocupación por el tratamiento."
+        }
+      ]
+    }
+  },
+  {
+    "model": "pacientes.paciente",
+    "pk": "2000000032",
+    "fields": {
+      "nombre_paciente": "Iván Ríos",
+      "edad": 28,
+      "genero": "Femenino",
+      "fecha_nacimiento": "1997-06-16",
+      "motivo_consulta": "Conductas agresivas",
+      "amnesis_psiquiatrica": "Psicosis reactiva breve",
+      "tratamiento": "Psicoterapia dialectico-conductual",
+      "plan_terapeutico": "Sesiones semanales",
+      "fecha_ingreso": "2025-06-08",
+      "eventos": [
+        {
+          "fecha": "2025-06-08",
+          "medico": "1001234567 - Mariana Vélez",
+          "observacion": "Crisis leve manejada sin complicaciones."
+        },
+        {
+          "fecha": "2025-06-04",
+          "medico": "1041440312 - Daniel Alexander Herrera Henao",
+          "observacion": "Crisis leve manejada sin complicaciones."
+        }
+      ]
+    }
+  },
+  {
+    "model": "pacientes.paciente",
+    "pk": "2000000033",
+    "fields": {
+      "nombre_paciente": "Fernanda Jiménez",
+      "edad": 18,
+      "genero": "Masculino",
+      "fecha_nacimiento": "2007-06-14",
+      "motivo_consulta": "Trastorno del sueño",
+      "amnesis_psiquiatrica": "Trastorno de ansiedad",
+      "tratamiento": "ISRS",
+      "plan_terapeutico": "Revisión semanal con psiquiatra",
+      "fecha_ingreso": "2025-06-08",
+      "eventos": [
+        {
+          "fecha": "2025-06-09",
+          "medico": "1001234567 - Mariana Vélez",
+          "observacion": "Crisis leve manejada sin complicaciones."
+        },
+        {
+          "fecha": "2025-06-04",
+          "medico": "1041440312 - Daniel Alexander Herrera Henao",
+          "observacion": "Se administró medicación sin efectos secundarios."
+        },
+        {
+          "fecha": "2025-06-09",
+          "medico": "1004567890 - Sofía Cardona",
+          "observacion": "Se administró medicación sin efectos secundarios."
+        }
+      ]
+    }
+  },
+  {
+    "model": "pacientes.paciente",
+    "pk": "2000000034",
+    "fields": {
+      "nombre_paciente": "Brayan Cano",
+      "edad": 38,
+      "genero": "Masculino",
+      "fecha_nacimiento": "1987-06-19",
+      "motivo_consulta": "Ansiedad generalizada",
+      "amnesis_psiquiatrica": "Trastorno depresivo mayor",
+      "tratamiento": "Psicoterapia dialectico-conductual",
+      "plan_terapeutico": "Revisión semanal con psiquiatra",
+      "fecha_ingreso": "2025-06-08",
+      "eventos": [
+        {
+          "fecha": "2025-06-07",
+          "medico": "1002345678 - Luis Camargo",
+          "observacion": "Se administró medicación sin efectos secundarios."
+        },
+        {
+          "fecha": "2025-06-07",
+          "medico": "1036967493 - Cristian David Diez Lopez",
+          "observacion": "No se observaron cambios relevantes."
+        }
+      ]
+    }
+  },
+  {
+    "model": "pacientes.paciente",
+    "pk": "2000000035",
+    "fields": {
+      "nombre_paciente": "Melissa Salinas",
+      "edad": 22,
+      "genero": "Masculino",
+      "fecha_nacimiento": "2003-06-15",
+      "motivo_consulta": "Conductas agresivas",
+      "amnesis_psiquiatrica": "Trastorno depresivo mayor",
+      "tratamiento": "Antipsicóticos",
+      "plan_terapeutico": "Observación 48h",
+      "fecha_ingreso": "2025-06-08",
+      "eventos": []
+    }
+  },
+  {
+    "model": "pacientes.paciente",
+    "pk": "2000000036",
+    "fields": {
+      "nombre_paciente": "Álvaro Martínez",
+      "edad": 49,
+      "genero": "Femenino",
+      "fecha_nacimiento": "1976-06-21",
+      "motivo_consulta": "Ideación suicida",
+      "amnesis_psiquiatrica": "Trastorno límite de la personalidad",
+      "tratamiento": "Litio",
+      "plan_terapeutico": "Seguimiento quincenal",
+      "fecha_ingreso": "2025-06-08",
+      "eventos": [
+        {
+          "fecha": "2025-06-04",
+          "medico": "1002345678 - Luis Camargo",
+          "observacion": "Se indica ajuste de medicación para evaluación."
+        },
+        {
+          "fecha": "2025-06-06",
+          "medico": "1002345678 - Luis Camargo",
+          "observacion": "No se observaron cambios relevantes."
+        },
+        {
+          "fecha": "2025-06-07",
+          "medico": "1036967493 - Cristian David Diez Lopez",
+          "observacion": "No se observaron cambios relevantes."
+        }
+      ]
+    }
+  },
+  {
+    "model": "pacientes.paciente",
+    "pk": "2000000037",
+    "fields": {
+      "nombre_paciente": "Tatiana Urrego",
+      "edad": 52,
+      "genero": "Femenino",
+      "fecha_nacimiento": "1973-06-22",
+      "motivo_consulta": "Conductas agresivas",
+      "amnesis_psiquiatrica": "Trastorno bipolar tipo II",
+      "tratamiento": "Psicoterapia dialectico-conductual",
+      "plan_terapeutico": "Supervisión diaria",
+      "fecha_ingreso": "2025-06-08",
+      "eventos": []
+    }
+  }
+]
