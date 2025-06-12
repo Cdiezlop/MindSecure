@@ -179,7 +179,7 @@
       </div>
     </div>
 
-    <!-- PANEL DE PERFIL  -->
+    <!-- PANEL DE PERFIL simplificado -->
     <div v-if="showProfileModal">
       <div class="profile-panel-overlay" @click.self="showProfileModal = false"></div>
       <div class="profile-panel">
@@ -440,7 +440,8 @@ export default {
 .detail-row {
   display: flex;
   align-items: flex-start;
-  padding: 16px 0;
+  padding: 16px 40px;
+  margin: 0 -40px;
   border-bottom: 3px solid #374151;
   min-height: 56px;
 }
@@ -646,7 +647,7 @@ export default {
   color: #0059af;
 }
 
-/* --- PANEL DEL PERFIL --- */
+/* --- PANEL DEL PERFIL simplificado --- */
 .profile-panel-overlay {
   position: fixed;
   inset: 0;
