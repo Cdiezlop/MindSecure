@@ -646,7 +646,7 @@ export default {
   color: #0059af;
 }
 
-/* --- PANEL DEL PERFIL simplificado --- */
+/* --- PANEL DEL PERFIL --- */
 .profile-panel-overlay {
   position: fixed;
   inset: 0;
