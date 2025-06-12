@@ -101,7 +101,7 @@ export default {
     handleLogin() {
       this.isLoading = true;
       
-      // Aquí irá tu lógica de login
+      // Espacio para la lógica real
       console.log('Login attempt:', this.loginForm);
       
       // Simular delay
