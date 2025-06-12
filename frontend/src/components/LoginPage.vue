@@ -28,7 +28,7 @@
           </div>
         </div>
         
-        <!-- Campo Contraseña -->
+        <!-- Campo contraseña -->
         <div class="input-group">
           <div class="input-container">
             <svg class="input-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -57,6 +57,13 @@
               </svg>
             </button>
           </div>
+        </div>
+        
+        <!-- Enlace de contraseña olvidada -->
+        <div class="forgot-password-section">
+          <a href="#" class="forgot-password-link" @click.prevent="goToForgotPassword">
+            ¿Olvidaste tu contraseña?
+          </a>
         </div>
         
         <!-- Botón de login -->
@@ -101,14 +108,20 @@ export default {
     handleLogin() {
       this.isLoading = true;
       
-      // Espacio para la lógica real
+      // Aquí la lógica de login
       console.log('Login attempt:', this.loginForm);
       
       // Simular delay
       setTimeout(() => {
         this.isLoading = false;
-        // Aquí manejarías la respuesta del login
+        // Aquí  la respuesta del login
       }, 2000);
+    },
+    
+    goToForgotPassword() {
+      // Lógica para ir a la página de recuperación de contraseña
+      console.log('Going to forgot password page');
+      // Ejemplo: this.$router.push('/forgot-password');
     },
     
     goToHelp() {
@@ -249,6 +262,26 @@ export default {
   color: #4A90E2;
 }
 
+.forgot-password-section {
+  text-align: right;
+  margin-bottom: 20px;
+}
+
+.forgot-password-link {
+  color: #4A90E2;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.forgot-password-link:hover {
+  color: #357ABD;
+  text-decoration: underline;
+  transform: translateX(-2px);
+}
+
 .login-button {
   width: 100%;
   padding: 16px;
@@ -333,6 +366,10 @@ export default {
   .login-input {
     font-size: 16px; /* Previene zoom en iOS */
   }
+  
+  .forgot-password-section {
+    text-align: center;
+  }
 }
 
 @media (max-height: 700px) {
@@ -368,6 +405,9 @@ export default {
 
 .input-group:nth-child(1) { animation-delay: 0.1s; }
 .input-group:nth-child(2) { animation-delay: 0.2s; }
+.forgot-password-section { 
+  animation: fadeInUp 0.8s ease-out 0.25s both;
+}
 .login-button { 
   animation: fadeInUp 0.8s ease-out 0.3s both;
 }
