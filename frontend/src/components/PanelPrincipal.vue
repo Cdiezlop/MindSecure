@@ -96,6 +96,14 @@
             <input v-model="newPatient.age" type="number" min="0" required />
           </label>
           <label>
+            Género:
+            <select v-model="newPatient.gender" required>
+              <option value="">Seleccionar género</option>
+              <option value="masculino">Masculino</option>
+              <option value="femenino">Femenino</option>
+            </select>
+          </label>
+          <label>
             Fecha de nacimiento:
             <input v-model="newPatient.birthDate" type="date" required />
           </label>
@@ -131,7 +139,7 @@
       </div>
     </div>
 
-    <!-- PANEL DE PERFIL simplificado -->
+    <!-- PANEL DE PERFIL  -->
     <div v-if="showProfileModal">
       <div class="profile-panel-overlay" @click.self="showProfileModal = false"></div>
       <div class="profile-panel">
@@ -183,6 +191,7 @@ export default {
         id: '',
         name: '',
         age: '',
+        gender: '',
         birthDate: '',
         reason: '',
         psychiatricHistory: '',
@@ -198,7 +207,7 @@ export default {
       alert(`Detalles de: ${patient.name}`);
     },
     downloadPDF(patient) {
-      alert(`Aquí descargarías la historia clínica de ${patient.name} en PDF (implementa tu lógica aquí)`);
+      alert(`Aquí dse descargaría la historia clínica de ${patient.name} en PDF (implementar la lógica aquí)`);
     },
     removePatient(patient) {
       if (confirm(`¿Seguro deseas eliminar a ${patient.name}?`)) {
@@ -211,6 +220,7 @@ export default {
         id: '',
         name: '',
         age: '',
+        gender: '',
         birthDate: '',
         reason: '',
         psychiatricHistory: '',
@@ -228,11 +238,11 @@ export default {
       this.closeModal();
     },
     goToSettings() {
-      alert('Ir a Ajustes (aquí puedes navegar o mostrar otra vista).');
+      alert('Ir a Ajustes.');
       this.showProfileModal = false;
     },
     logout() {
-      alert('Cerrar sesión (aquí va tu lógica de logout).');
+      alert('Cerrar sesión (lógica de logout).');
       this.showProfileModal = false;
     }
   }
@@ -505,7 +515,8 @@ export default {
   margin-bottom: 10px;
 }
 .modal input,
-.modal textarea {
+.modal textarea,
+.modal select {
   border: 1.5px solid #ddd;
   border-radius: 8px;
   padding: 8px 10px;
@@ -514,10 +525,15 @@ export default {
   margin-top: 2px;
   transition: border-color 0.2s;
   resize: none;
+  background: white;
 }
 .modal input:focus,
-.modal textarea:focus {
+.modal textarea:focus,
+.modal select:focus {
   border-color: #0059af;
+}
+.modal select {
+  cursor: pointer;
 }
 .wide-textarea {
   min-height: 54px;
@@ -572,7 +588,7 @@ export default {
   color: #0059af;
 }
 
-/* --- PANEL DEL PERFIL simplificado --- */
+/* --- PANEL DEL PERFIL --- */
 .profile-panel-overlay {
   position: fixed;
   inset: 0;
