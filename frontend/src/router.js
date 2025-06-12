@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import LoginPage from './components/LoginPage.vue'
 import PanelPrincipal from './components/PanelPrincipal.vue'
 import VerDetalles from './components/VerDetalles.vue'
-import AjustesMind from './components/AjustesMind.vue'   // <--- Agregado aquí
+import AjustesMind from './components/AjustesMind.vue'   
 
 const routes = [
   {
@@ -27,9 +27,9 @@ const routes = [
   },
   {
     path: '/ajustes',
-    name: 'AjustesMind',                // <--- Nueva ruta
+    name: 'AjustesMind',               
     component: AjustesMind,
-            // Opcional: proteger acceso si hay login
+            
   }
 ]
 
