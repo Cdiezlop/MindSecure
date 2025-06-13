@@ -1,10 +1,8 @@
-from rest_framework import routers
 from django.urls import path
-from .api import MedicoViewVet, CambiarClaveAPIView
+from .api import CambiarClaveAPIView, EditarPerfilAPIView
 
-router = routers.DefaultRouter()
-router.register('api/medicos', MedicoViewVet, 'medicos')
 
-urlpatterns = router.urls + [
-    path('api/medicos/cambiar-clave/', CambiarClaveAPIView.as_view(), name='cambiar-clave-medico'),
+urlpatterns = [
+    path('api/editar-perfil-medico/', EditarPerfilAPIView.as_view(), name='editar-perfil-medico'),
+    path('api/cambiar-clave-medico/', CambiarClaveAPIView.as_view(), name='cambiar-clave-medico'),
 ]
