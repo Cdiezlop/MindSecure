@@ -16,9 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from medicos.api import LoginMedicoAPIView  
+
 
 urlpatterns = [
+    path('', LoginMedicoAPIView.as_view(), name='login_medico'),  # <- login en raíz
     path('admin/', admin.site.urls),
-    path('medicos/', include('medicos.urls')),     # Rutas de la app de médicos
-    path('pacientes/', include('pacientes.urls'))  # Rutas de la app de pacientes
+    path('medicos/', include('medicos.urls')),
+    path('pacientes/', include('pacientes.urls')),
 ]

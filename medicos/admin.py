@@ -3,5 +3,5 @@ from .models import Medico
 
 @admin.register(Medico)
 class MedicoAdmin(admin.ModelAdmin):
-    list_display = ('id', 'nombre', 'puesto', 'email')
-    search_fields = ('nombre', 'puesto', 'email')
+    list_display = ('id', 'nombre', 'puesto')
+    search_fields = ('nombre', 'puesto')
