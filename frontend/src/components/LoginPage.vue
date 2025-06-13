@@ -84,6 +84,39 @@
         </div>
       </div>
     </div>
+
+    <!-- MODAL: Olvidaste tu contraseña -->
+    <div v-if="showForgotPasswordModal" class="modal-overlay">
+      <div class="modal-content">
+        <button class="modal-close" @click="showForgotPasswordModal = false">&times;</button>
+        <h2 class="modal-title">¿Olvidaste tu contraseña?</h2>
+        <div v-if="forgotPasswordSent" class="modal-message modal-success">
+          Si tu correo está registrado, te hemos enviado instrucciones para restablecer tu contraseña.
+        </div>
+        <form v-else @submit.prevent="handleForgotPassword">
+          <input
+            type="email"
+            v-model="forgotPasswordEmail"
+            required
+            placeholder="Tu correo electrónico"
+            class="modal-input"
+          />
+          <button class="modal-action-button" type="submit">Enviar instrucciones</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- MODAL: Necesitas ayuda -->
+    <div v-if="showHelpModal" class="modal-overlay">
+      <div class="modal-content">
+        <button class="modal-close" @click="showHelpModal = false">&times;</button>
+        <h2 class="modal-title">Soporte MindSecure</h2>
+        <div class="modal-message">
+          <strong>Correo:</strong> soporte@mindsecure.com <br>
+          <strong>Teléfono:</strong> +57 301 234 5678
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -97,36 +130,39 @@ export default {
         password: ''
       },
       showPassword: false,
-      isLoading: false
+      isLoading: false,
+      // MODALES
+      showForgotPasswordModal: false,
+      showHelpModal: false,
+      forgotPasswordEmail: '',
+      forgotPasswordSent: false
     }
   },
   methods: {
     togglePassword() {
       this.showPassword = !this.showPassword;
     },
-    
     handleLogin() {
       this.isLoading = true;
-      
-      // Aquí la lógica de login
-      console.log('Login attempt:', this.loginForm);
-      
-      // Simular delay
+      // Aquí la lógica del login
       setTimeout(() => {
         this.isLoading = false;
-        // Aquí  la respuesta del login
       }, 2000);
     },
-    
     goToForgotPassword() {
-      // Lógica para ir a la página de recuperación de contraseña
-      console.log('Going to forgot password page');
-      // Ejemplo: this.$router.push('/forgot-password');
+      this.showForgotPasswordModal = true;
+      this.forgotPasswordSent = false;
+      this.forgotPasswordEmail = '';
     },
-    
     goToHelp() {
-      // Lógica para ir a la página de ayuda
-      console.log('Going to help page');
+      this.showHelpModal = true;
+    },
+    handleForgotPassword() {
+      this.forgotPasswordSent = true;
+      // Aquí agregar backend
+      setTimeout(() => {
+        this.showForgotPasswordModal = false;
+      }, 2500); // Cierra modal después de 2.5s
     }
   }
 }
@@ -413,5 +449,126 @@ export default {
 }
 .help-section { 
   animation: fadeInUp 0.8s ease-out 0.4s both;
+}
+
+/* MODALES */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(33, 50, 80, 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  animation: fadeIn 0.25s;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modal-content {
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 6px 32px rgba(44, 90, 155, 0.25);
+  padding: 38px 24px 32px 24px;
+  width: 100%;
+  max-width: 360px;
+  position: relative;
+  animation: fadeModalUp 0.3s;
+}
+
+@keyframes fadeModalUp {
+  from { opacity: 0; transform: translateY(30px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+
+.modal-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #1b365d;
+  text-align: center;
+  margin-bottom: 1.1rem;
+}
+
+.modal-close {
+  position: absolute;
+  right: 16px;
+  top: 16px;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #789;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.modal-close:hover { color: #357ABD; }
+
+.modal-message {
+  font-size: 1rem;
+  color: #28477d;
+  margin-bottom: 1.1rem;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.modal-success {
+  color: #21994d;
+  font-weight: 600;
+  background: #e6faee;
+  border-radius: 12px;
+  padding: 1rem;
+}
+
+.modal-input, .modal-action-button {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* input del modal */
+.modal-input {
+  padding: 12px 16px;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 12px;
+  border: 1px solid #c6d4e7;
+  background: #f5f9fc;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.modal-input:focus {
+  border-color: #357ABD;
+  background: #fff;
+}
+
+/* botón del modal */
+.modal-action-button {
+  padding: 12px 0;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #4A90E2 0%, #357ABD 100%);
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.07rem;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+  box-shadow: 0 4px 16px rgba(74, 144, 226, 0.20);
+}
+
+.modal-action-button:hover {
+  background: linear-gradient(135deg, #357ABD 0%, #4A90E2 100%);
+  transform: translateY(-2px);
+}
+
+/* Responsive modal */
+@media (max-width: 540px) {
+  .modal-content {
+    padding: 26px 10px 18px 10px;
+    max-width: 98vw;
+  }
 }
 </style>
