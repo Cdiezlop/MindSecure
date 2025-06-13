@@ -19,9 +19,11 @@ class PacienteListViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
         
         crear_url = request.build_absolute_uri('/pacientes/api/pacientes/nuevo/')
         buscar_url = request.build_absolute_uri('/pacientes/api/pacientes/lista/buscar/')
-        cambiar_clave_url = request.build_absolute_uri('/medicos/api/medicos/cambiar-clave/')
-        
+        cambiar_clave_url = request.build_absolute_uri(reverse('cambiar-clave-medico'))
+        editar_perfil_url = request.build_absolute_uri(reverse('editar-perfil-medico'))
+
         return Response({
+            'editar_perfil_url': editar_perfil_url,
             'crear_paciente_url': crear_url,
             'buscar_paciente_url': buscar_url,
             'cambiar_clave_url': cambiar_clave_url,
@@ -36,7 +38,7 @@ class PacienteListViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
 
         crear_url = request.build_absolute_uri('/pacientes/api/pacientes/nuevo/')
         buscar_url = request.build_absolute_uri('/pacientes/api/pacientes/lista/buscar/')
-        cambiar_clave_url = request.build_absolute_uri('/medicos/api/medicos/cambiar-clave/')
+        cambiar_clave_url = request.build_absolute_uri(reverse('cambiar-clave-medico'))
         
         return Response({
             'crear_paciente_url': crear_url,
