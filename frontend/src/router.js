@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import LoginPage from './components/LoginPage.vue'
 import PanelPrincipal from './components/PanelPrincipal.vue'
 import VerDetalles from './components/VerDetalles.vue'
-import AjustesMind from './components/AjustesMind.vue'   
+import AjustesDeUsuario from './components/AjustesDeUsuario.vue'
 
 const routes = [
   {
@@ -17,8 +17,7 @@ const routes = [
   {
     path: '/panel',
     name: 'PanelPrincipal',
-    component: PanelPrincipal,
-    
+    component: PanelPrincipal
   },
   {
     path: '/detalles/:id',
@@ -27,9 +26,8 @@ const routes = [
   },
   {
     path: '/ajustes',
-    name: 'AjustesMind',               
-    component: AjustesMind,
-            
+    name: 'AjustesDeUsuario',
+    component: AjustesDeUsuario
   }
 ]
 
