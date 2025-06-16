@@ -1,3 +1,4 @@
+
 Mind-Secure/
 ├── manage.py
 ├── db.sqlite3                      ← (En desarrollo)
@@ -44,6 +45,8 @@ Mind-Secure/
 │       ├── 0001_inicial.py
 │       ├── 0002_alter_paciente_fecha_ingreso.py
 │       └── init.py
+├── scripts/
+│   └── encriptar_claves_medicos.py
 
 
 ├── frontend/
