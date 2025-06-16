@@ -6,7 +6,7 @@
       "nombre": "Cristian David Diez Lopez",
       "puesto": "Psiquiatra",
       "email": "Cristian.diez@udea.edu.co",
-      "clave_acceso": "1036967493"
+      "clave_acceso": "pbkdf2_sha256$1000000$KtebsGEhwNIiQVCMNzrZAQ$NsPXNrjAeo/KS+Seq8EIxq+ZG/E9YOnRRNeQJagbzck="
     }
   },
   {
@@ -16,7 +16,7 @@
       "nombre": "Eliana Brand Agudelo",
       "puesto": "Médico general",
       "email": "eliana.brand@udea.edu.co",
-      "clave_acceso": "1000569835"
+      "clave_acceso": "pbkdf2_sha256$1000000$LxbgK8vgwcW76t4BeEXDG1$7whTLkORADckoMKAfeEOjps8J7ubx9OVKnMQtzuH6Vk="
     }
   },
   {
@@ -26,7 +26,7 @@
       "nombre": "Daniel Alexander Herrera Henao",
       "puesto": "Psiquiatra infantil",
       "email": "daniel.herrerah@udea.edu.co",
-      "clave_acceso": "1041440312"
+      "clave_acceso": "pbkdf2_sha256$1000000$NzB9OSb2NDtcg5EVjZoSDn$wAoo30DKhOyVhnJ0BVb7u7366F4LwjdDxSM7Ca6cSck="
     }
   },
   {
@@ -36,7 +36,7 @@
       "nombre": "Mariana Vélez",
       "puesto": "Psiquiatra",
       "email": "mariana@hospital.com",
-      "clave_acceso": "1001234567"
+      "clave_acceso": "pbkdf2_sha256$1000000$fMcBcku6Bvvo9BDnU1rgbV$5yaBmRHFdi6q5t1dAQtFIv4VXpS03wxwXn5ECmkcink="
     }
   },
   {
@@ -46,7 +46,7 @@
       "nombre": "Luis Camargo",
       "puesto": "Neuropsiquiatra",
       "email": "luis@hospital.com",
-      "clave_acceso": "1002345678"
+      "clave_acceso": "pbkdf2_sha256$1000000$hB7vPs0Y9eSsBLFNVlz7nD$bNUw70QZDcBGVuP32JRt3cqxWjiAHyI5rfBF/Q++TbA="
     }
   },
   {
@@ -56,7 +56,7 @@
       "nombre": "Mateo Restrepo",
       "puesto": "Médico internista",
       "email": "mateo@hospital.com",
-      "clave_acceso": "1003456789"
+      "clave_acceso": "pbkdf2_sha256$1000000$YMwfwhOcOpIXDwscOu6wmc$6zVXuuC2ZYpOJ80l8nO+U7GenmvHOsdlryhy9ZjB4ww="
     }
   },
   {
@@ -66,7 +66,7 @@
       "nombre": "Sofía Cardona",
       "puesto": "Médico general",
       "email": "sofía@hospital.com",
-      "clave_acceso": "1004567890"
+      "clave_acceso": "pbkdf2_sha256$1000000$4RmWIAcLbdZvE1BdpV7Qfk$NcwTkuT2kX4ohHhixRmf+wD5at+yQg2GkEzNWXLhyKg="
     }
   }
 ]
