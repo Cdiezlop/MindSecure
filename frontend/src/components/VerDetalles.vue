@@ -1,9 +1,22 @@
 <template>
+  <template>
+  <div v-if="paciente">
+    <h2>Detalles del Paciente</h2>
+    <p><strong>ID:</strong> {{ paciente.id }}</p>
+    <p><strong>Nombre:</strong> {{ paciente.nombre_paciente }}</p>
+    <!-- Otros campos... -->
+  </div>
+  <div v-else>
+    <p>Cargando datos del paciente...</p>
+  </div>
+</template>
   <div class="panel-principal">
     <!-- Header -->
     <div class="header">
       <div class="left-group">
-        <img src="@/assets/cerebro.png" alt="Logo" class="logo-img" />
+        <router-link to="/panel">
+          <img src="@/assets/cerebro.png" alt="Logo" class="logo-img" />
+        </router-link>
         <div class="search-section">
           <div class="search-container">
             <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none">
@@ -33,60 +46,62 @@
         </div>
         
         <div class="details-content">
-          <!-- ID -->
-          <div class="detail-row">
-            <div class="detail-label">ID:</div>
-            <div class="detail-value">{{ patient.id }}</div>
+          <div v-if="patient">
+            <div class="detail-row">
+              <div class="detail-label">ID:</div>
+              <div class="detail-value">{{ patient.id }}</div>
+            </div>
+            <div class="detail-row">
+              <div class="detail-label">Nombre:</div>
+              <div class="detail-value">{{ patient.nombre_paciente }}</div>
+            </div>
+            <div class="detail-row">
+              <div class="detail-label">Edad:</div>
+              <div class="detail-value">{{ patient.edad }}</div>
+            </div>
+            <div class="detail-row">
+              <div class="detail-label">Género:</div>
+              <div class="detail-value">{{ patient.genero }}</div>
+            </div>
+            <div class="detail-row">
+              <div class="detail-label">Fecha de nacimiento:</div>
+              <div class="detail-value">{{ patient.fecha_nacimiento }}</div>
+            </div>
+            <div class="detail-row">
+              <div class="detail-label">Motivo de consulta:</div>
+              <div class="detail-value">{{ patient.motivo_consulta }}</div>
+            </div>
+            <div class="detail-row">
+              <div class="detail-label">Anamnesis psiquiátrica:</div>
+              <div class="detail-value">{{ patient.amnesis_psiquiatrica }}</div>
+            </div>
+            <div class="detail-row">
+              <div class="detail-label">Tratamiento:</div>
+              <div class="detail-value">{{ patient.tratamiento }}</div>
+            </div>
+
+            <div class="detail-row">
+              <div class="detail-label">Plan terapéutico:</div>
+              <div class="detail-value">{{ patient.plan_terapeutico }}</div>
+            </div>
+
+            <div class="detail-row">
+            <div class="detail-label">Fecha de ingreso:</div>
+            <div class="detail-value">{{ patient.fecha_ingreso }}</div>
           </div>
 
-          <!-- Nombre -->
-          <div class="detail-row">
-            <div class="detail-label">Nombre:</div>
-            <div class="detail-value">{{ patient.name }}</div>
-          </div>
-
-          <!-- Edad -->
-          <div class="detail-row">
-            <div class="detail-label">Edad:</div>
-            <div class="detail-value">{{ patient.age }}</div>
-          </div>
-
-          <!-- Género -->
-          <div class="detail-row">
-            <div class="detail-label">Género:</div>
-            <div class="detail-value">{{ patient.gender }}</div>
-          </div>
-
-          <!-- Fecha de nacimiento -->
-          <div class="detail-row">
-            <div class="detail-label">Fecha de nacimiento:</div>
-            <div class="detail-value">{{ patient.birthDate }}</div>
-          </div>
-
-          <!-- Motivo de consulta -->
-          <div class="detail-row">
-            <div class="detail-label">Motivo de consulta:</div>
-            <div class="detail-value">{{ patient.reason }}</div>
-          </div>
-
-          <!-- Anamnesis psiquiátrica -->
-          <div class="detail-row">
-            <div class="detail-label">Anamnesis psiquiátrica:</div>
-            <div class="detail-value">{{ patient.psychiatricHistory }}</div>
-          </div>
-
-          <!-- Tratamiento -->
-          <div class="detail-row">
-            <div class="detail-label">Tratamiento:</div>
-            <div class="detail-value">{{ patient.treatment }}</div>
-          </div>
-
-          <!-- Plan terapéutico -->
           <div class="detail-row last-row">
-            <div class="detail-label">Plan terapéutico:</div>
-            <div class="detail-value">{{ patient.therapeuticPlan }}</div>
+            <div class="detail-label">Eventos:</div>
+            <div class="detail-value">
+              <pre>{{ patient.eventos }}</pre>
+            </div>
           </div>
-        </div>
+          </div>
+          
+
+          <div v-else>
+            <p>Cargando datos del paciente...</p>
+          </div>
 
         <!-- Action Buttons -->
         <div class="details-actions">
@@ -124,53 +139,57 @@
         <form @submit.prevent="saveEditedPatient">
           <label>
             ID:
-            <input
-              v-model="editedPatient.id"
-              type="text"
-              inputmode="numeric"
-              pattern="[0-9]*"
-              autocomplete="off"
-              required
-              placeholder="Documento de identidad"
-            />
+            <input v-model="editedPatient.id" />
           </label>
           <label>
             Nombre del paciente:
-            <input v-model="editedPatient.name" required />
+            <input v-model="editedPatient.nombre_paciente" />
           </label>
           <label>
             Edad:
-            <input v-model="editedPatient.age" type="number" min="0" required />
+            <input v-model="editedPatient.edad" />
           </label>
           <label>
-            Género:
-            <select v-model="editedPatient.gender" required>
-              <option value="">Seleccionar género</option>
-              <option value="M">Masculino</option>
-              <option value="F">Femenino</option>
-              <option value="Otro">Otro</option>
-            </select>
+            <label>
+              Género:
+              <select v-model="editedPatient.genero" required>
+                <option value="">Selecciona una opción</option>
+                <option value="femenino">Femenino</option>
+                <option value="masculino">Masculino</option>
+                <option value="otro">Otro</option>
+              </select>
+            </label>
           </label>
           <label>
             Fecha de nacimiento:
-            <input v-model="editedPatient.birthDate" type="date" required />
+            <input type="date" v-model="editedPatient.fecha_nacimiento" />
           </label>
           <label>
             Motivo de consulta:
-            <textarea v-model="editedPatient.reason" rows="3" class="wide-textarea" required></textarea>
+            <textarea v-model="editedPatient.motivo_consulta" />
           </label>
           <label>
             Amnamnesis psiquiátrica:
-            <textarea v-model="editedPatient.psychiatricHistory" rows="2"></textarea>
+            <textarea v-model="editedPatient.amnesis_psiquiatrica" />
           </label>
           <label>
             Tratamiento:
-            <textarea v-model="editedPatient.treatment" rows="2"></textarea>
+            <textarea v-model="editedPatient.tratamiento" />
           </label>
           <label>
             Plan terapéutico:
-            <textarea v-model="editedPatient.therapeuticPlan" rows="5" class="wide-textarea"></textarea>
+            <textarea v-model="editedPatient.plan_terapeutico" />
           </label>
+          <label v-if="editedPatient.fecha_ingreso">
+            Fecha de ingreso:
+            <input type="date" v-model="editedPatient.fecha_ingreso" />
+          </label>
+
+          <label v-if="editedPatient.eventos">
+            Eventos:
+            <textarea v-model="editedPatient.eventos"></textarea>
+          </label>
+
           <div class="modal-actions">
             <button type="submit" class="modal-save">Guardar cambios</button>
             <button type="button" class="modal-cancel" @click="closeEditModal">Cancelar</button>
@@ -212,6 +231,7 @@
     </div>
     <!-- FIN PANEL PERFIL -->
   </div>
+  </div>
 </template>
 
 <script>
@@ -223,63 +243,167 @@ export default {
       showEditModal: false,
       userName: 'Nombre completo médico',
       userRole: 'Puesto del médico',
-      patient: {
-        id: 'P001',
-        name: 'Juan Pérez',
-        age: '35',
-        gender: 'M',
-        birthDate: '1989-01-05',
-        reason: 'Ansiedad generalizada',
-        psychiatricHistory: 'Antecedentes de ansiedad desde la adolescencia.',
-        treatment: 'Terapia cognitivo-conductual y medicación.',
-        therapeuticPlan: 'Sesiones semanales, evaluación psiquiátrica cada mes.'
-      },
+      patient: null,
       editedPatient: {
         id: '',
-        name: '',
-        age: '',
-        gender: '',
-        birthDate: '',
-        reason: '',
-        psychiatricHistory: '',
-        treatment: '',
-        therapeuticPlan: ''
+        nombre_paciente: '',
+        edad: '',
+        genero: '',
+        fecha_nacimiento: '',
+        motivo_consulta: '',
+        amnesis_psiquiatrica: '',
+        tratamiento: '',
+        plan_terapeutico: '',
+        fecha_ingreso: '',
+        eventos: ''
       }
     }
   },
+    mounted() {
+          this.userName = localStorage.getItem('medicoNombre') || 'Nombre no disponible';
+          this.userRole = localStorage.getItem('medicoPuesto') || 'Rol no disponible';
+          const id = this.$route.params.id;
+          fetch(`http://127.0.0.1:8000/pacientes/api/pacientes/detalles/${id}/`)
+            .then(response => response.json())
+            .then(data => {
+              console.log("📦 Datos del paciente:", data);
+              this.patient = data;
+
+
+              // Mapeo manual de backend → frontend
+              this.editedPatient = {
+                id: data.id,
+                nombre_paciente: data.nombre_paciente,
+                edad: data.edad,
+                genero: data.genero,
+                fecha_nacimiento: data.fecha_nacimiento,
+                motivo_consulta: data.motivo_consulta,
+                amnesis_psiquiatrica: data.amnesis_psiquiatrica,
+                tratamiento: data.tratamiento,
+                plan_terapeutico: data.plan_terapeutico,
+                fecha_ingreso: data.fecha_ingreso,
+                eventos: data.eventos
+              };
+
+            })
+            .catch(error => {
+              console.error("Error al obtener detalles del paciente:", error);
+            });
+        }
+
+,
+
   methods: {
-    editPatient() {
-      // Copiar los datos actuales del paciente al formulario de edición
-      this.editedPatient = { ...this.patient };
-      this.showEditModal = true;
+    goToPanel() {
+      this.$router.push('/panel');
     },
+    
+    editPatient() {
+        console.log("Paciente recibido:", this.patient);
+
+        this.editedPatient = {
+          id: this.patient.id,
+          nombre_paciente: this.patient.nombre_paciente,
+          edad: this.patient.edad,
+          genero: this.patient.genero,
+          fecha_nacimiento: this.patient.fecha_nacimiento,
+          motivo_consulta: this.patient.motivo_consulta,
+          amnesis_psiquiatrica: this.patient.amnesis_psiquiatrica,
+          tratamiento: this.patient.tratamiento,
+          plan_terapeutico: this.patient.plan_terapeutico,
+          fecha_ingreso: this.patient.fecha_ingreso || '',
+          eventos: typeof this.patient.eventos === 'object'
+            ? JSON.stringify(this.patient.eventos, null, 2)
+            : this.patient.eventos || ''
+        };
+
+        this.showEditModal = true;
+      },
     closeEditModal() {
       this.showEditModal = false;
     },
     saveEditedPatient() {
-      // Actualizar los datos del paciente con los cambios
-      this.patient = { ...this.editedPatient };
-      this.closeEditModal();
-      alert('Historia clínica actualizada correctamente');
-    },
+        const id = this.editedPatient.id;
+
+        const payload = {
+            id: id,
+            nombre_paciente: this.editedPatient.nombre_paciente,
+            edad: this.editedPatient.edad,
+            genero: this.editedPatient.genero,
+            fecha_nacimiento: this.editedPatient.fecha_nacimiento,
+            motivo_consulta: this.editedPatient.motivo_consulta,
+            amnesis_psiquiatrica: this.editedPatient.amnesis_psiquiatrica,
+            tratamiento: this.editedPatient.tratamiento,
+            plan_terapeutico: this.editedPatient.plan_terapeutico,
+            fecha_ingreso: this.editedPatient.fecha_ingreso || new Date().toISOString().split('T')[0],
+            eventos: (() => {
+              try {
+                return JSON.parse(this.editedPatient.eventos);
+              } catch {
+                return this.editedPatient.eventos || [];
+              }
+            })()
+          };
+
+        fetch(`http://127.0.0.1:8000/pacientes/api/pacientes/detalles/${id}/`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(payload)
+        })
+        .then(response => {
+          if (!response.ok) throw new Error("Error al actualizar los datos");
+          return response.json();
+        })
+        .then(data => {
+          this.patient = data;
+          this.closeEditModal();
+          alert('Historia clínica actualizada correctamente');
+        })
+        .catch(error => {
+          console.error("Error al actualizar:", error);
+          alert("No se pudo actualizar el paciente.");
+        });
+      },
     deletePatient() {
-      if (confirm(`¿Seguro deseas eliminar a ${this.patient.name}?`)) {
-        alert('Paciente eliminado. Redirigiendo a la lista...');
-        this.goBack();
-      }
-    },
+        if (confirm(`¿Seguro deseas eliminar a ${this.patient.nombre_paciente}?`)) {
+          fetch(`http://127.0.0.1:8000/pacientes/api/pacientes/detalles/${this.patient.id}/`, {
+            method: "DELETE"
+          })
+          .then(response => {
+            if (!response.ok) throw new Error("Error al eliminar el paciente");
+            alert('Paciente eliminado. Redirigiendo a la lista...');
+            this.$router.push('/panel');
+          })
+          .catch(error => {
+            console.error("Error al eliminar:", error);
+            alert("No se pudo eliminar el paciente.");
+          });
+        }
+      },
     goBack() {
       alert('Volver a la lista de pacientes (aquí implementar navegación)');
-      // this.$router.push('/panel-principal');
+      this.$router.push('/panel');
     },
     goToSettings() {
       alert('Ir a Ajustes (aquí puedes navegar o mostrar otra vista).');
       this.showProfileModal = false;
     },
     logout() {
-      alert('Cerrar sesión (aquí va tu lógica de logout).');
-      this.showProfileModal = false;
-    }
+        // Limpiar los datos del médico en localStorage
+        localStorage.removeItem('medicoId');
+        localStorage.removeItem('medicoNombre');
+        localStorage.removeItem('medicoPuesto');
+        localStorage.removeItem('medicoEmail');
+
+        // Cerrar modal
+        this.showProfileModal = false;
+
+        // Redirigir al login
+        window.location.href = '/login';
+      }
+
   }
 }
 </script>

@@ -62,10 +62,9 @@ class CambiarClaveAPIView(APIView):
 class MedicoViewVet(viewsets.ModelViewSet):
     queryset = Medico.objects.all()
     permission_classes = [permissions.AllowAny]
-    serializer_class = MedicoSerializer
+    serializer_class = MedicoSerializer 
 
 class LoginMedicoAPIView(APIView):
-    print("mierda")
     def post(self, request):
         medico_id = request.data.get('id')
         clave_acceso = request.data.get('clave_acceso')
@@ -85,7 +84,8 @@ class LoginMedicoAPIView(APIView):
                 'medico': {
                     'id': medico.id,
                     'nombre': medico.nombre,
-                    'puesto': medico.puesto
+                    'puesto': medico.puesto,
+                    'email': medico.email
                 }
             }, status=status.HTTP_200_OK)
 

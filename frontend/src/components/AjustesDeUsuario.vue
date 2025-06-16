@@ -3,7 +3,9 @@
     <!-- Header -->
     <div class="header">
       <div class="left-group">
-        <img src="@/assets/cerebro.png" alt="Logo" class="logo-img" />
+        <router-link to="/panel">
+          <img src="@/assets/cerebro.png" alt="Logo" class="logo-img" />
+        </router-link>
         <div class="search-section">
           <div class="search-container">
             <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none">
@@ -165,12 +167,13 @@
 
 <script setup>
 import { ref } from 'vue'
+import axios from 'axios';
 const showProfileModal = ref(false);
 const modal = ref(null);
 
 // Estado para datos de ejemplo
-const userName = ref("Nombre completo médico");
-const userRole = ref("Puesto del médico");
+const userName = ref(localStorage.getItem('medicoNombre') || 'Nombre no disponible');
+const userRole = ref(localStorage.getItem('medicoPuesto') || 'Rol no disponible');
 const editName = ref(userName.value);
 const editEmail = ref("medico@mindsecure.com");
 const oldPassword = ref("");
@@ -180,10 +183,12 @@ const confirmPassword = ref("");
 // Abrir modal según tipo
 function openModal(type) {
   modal.value = type;
+
   if (type === 'perfil') {
-    editName.value = userName.value;
-    editEmail.value = "medico@mindsecure.com";
+    editName.value = localStorage.getItem('medicoNombre') || '';
+    editEmail.value = localStorage.getItem('medicoEmail') || ''; // si no tienes email, puedes dejarlo fijo
   }
+
   if (type === 'password') {
     oldPassword.value = "";
     newPassword.value = "";
@@ -194,23 +199,73 @@ function closeModal() {
   modal.value = null;
 }
 
+
 // Acciones ejemplo 
-function saveProfile() {
-  userName.value = editName.value;
-  
-  closeModal();
-}
-function savePassword() {
-  
-  if (newPassword.value !== confirmPassword.value) {
-    alert("Las contraseñas no coinciden");
-    return;
+async function saveProfile() {
+    const medicoId = localStorage.getItem('medicoId');
+
+    try {
+      const response = await axios.post('http://127.0.0.1:8000/medicos/api/editar-perfil-medico/', {
+        id: medicoId,
+        nombre: editName.value,
+        email: editEmail.value
+      });
+
+      userName.value = editName.value;
+      localStorage.setItem('medicoNombre', editName.value);
+      localStorage.setItem('medicoEmail', editEmail.value);
+
+      alert(response.data.mensaje || "Perfil actualizado exitosamente.");
+      closeModal();
+    } catch (error) {
+      console.error("Error al guardar el perfil:", error);
+      alert("No se pudo actualizar el perfil.");
+    }
   }
-  closeModal();
-}
+
+async function savePassword() {
+    const medicoId = localStorage.getItem('medicoId');
+    console.log("ID médico:", medicoId);
+
+    if (newPassword.value !== confirmPassword.value) {
+      alert("Las contraseñas no coinciden");
+      return;
+    }
+
+    try {
+      await axios.post('http://127.0.0.1:8000/medicos/api/cambiar-clave-medico/', {
+      id: medicoId,
+      clave_actual: oldPassword.value,
+      nueva_clave: newPassword.value,
+      confirmar_clave: confirmPassword.value
+    });
+
+
+      alert("Contraseña cambiada exitosamente.");
+      closeModal();
+    } catch (error) {
+      console.log("Respuesta del backend:", error.response?.data);
+
+      if (error.response && error.response.data) {
+        alert(error.response.data.error || error.response.data.non_field_errors?.[0] || "Error al cambiar la contraseña.");
+      } else {
+        alert("Error desconocido al cambiar la contraseña.");
+      }
+      console.error("Error al cambiar contraseña:", error);
+    }
+  }
+
 function logout() {
   showProfileModal.value = false;
-  // Lógica de logout real 
+
+  // Borra los datos de sesión
+  localStorage.removeItem('medicoId');
+  localStorage.removeItem('medicoNombre');
+  localStorage.removeItem('medicoPuesto');
+  localStorage.removeItem('medicoEmail');
+
+  // Redirige al login
+  window.location.href = '/login';
 }
 </script>
 

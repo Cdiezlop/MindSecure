@@ -1,16 +1,35 @@
 <template>
+  <template>
+  <div>
+    <h2>Usuarios desde el backend</h2>
+    <p v-if="error">{{ error }}</p>
+    <ul v-else>
+      <li v-for="usuario in usuarios" :key="usuario.id">
+        {{ usuario.nombre_paciente }}
+      </li>
+    </ul>
+  </div>
+</template>
+
   <div class="panel-principal">
     <!-- Header -->
     <div class="header">
       <div class="left-group">
-        <img src="@/assets/cerebro.png" alt="Logo" class="logo-img" />
+        <router-link to="/panel">
+          <img src="@/assets/cerebro.png" alt="Logo" class="logo-img" />
+        </router-link>
         <div class="search-section">
           <div class="search-container">
             <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none">
               <path d="M21 21L16.514 16.506M19 10.5C19 15.194 15.194 19 10.5 19C5.806 19 2 15.194 2 10.5C2 5.806 5.806 2 10.5 2C15.194 2 19 5.806 19 10.5Z"
                 stroke="#9CA3AF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
-            <input type="text" placeholder="Buscar..." />
+            <input
+              type="text"
+              placeholder="Buscar..."
+              v-model="searchQuery"
+              @input="buscarPaciente"
+            />
           </div>
         </div>
       </div>
@@ -43,8 +62,8 @@
           <div class="header-cell">Acción</div>
         </div>
         <div class="table-body">
-          <div class="table-row" v-for="patient in patients" :key="patient.id">
-            <div class="cell patient-name">{{ patient.name }}</div>
+          <div class="table-row" v-for="patient in usuarios" :key="patient.id">
+            <div class="cell patient-name">{{ patient.nombre_paciente }}</div>
             <div class="cell patient-id">{{ patient.id }}</div>
             <div class="cell actions">
               <button class="action-button" @click="viewDetails(patient)">
@@ -77,59 +96,52 @@
         <form @submit.prevent="saveNewPatient">
           <label>
             ID:
-            <input
-              v-model="newPatient.id"
-              type="text"
-              inputmode="numeric"
-              pattern="[0-9]*"
-              autocomplete="off"
-              required
-              placeholder="Documento de identidad"
-            />
+            <input v-model="newPatient.id" />
           </label>
           <label>
             Nombre del paciente:
-            <input v-model="newPatient.name" required />
+            <input v-model="newPatient.nombre_paciente" />
           </label>
           <label>
             Edad:
-            <input v-model="newPatient.age" type="number" min="0" required />
+            <input v-model="newPatient.edad" />
           </label>
           <label>
             Género:
-            <select v-model="newPatient.gender" required>
-              <option value="">Seleccionar género</option>
-              <option value="masculino">Masculino</option>
+            <select v-model="newPatient.genero" required>
+              <option value="">Selecciona una opción</option>
               <option value="femenino">Femenino</option>
+              <option value="masculino">Masculino</option>
+              <option value="otro">Otro</option>
             </select>
           </label>
           <label>
             Fecha de nacimiento:
-            <input v-model="newPatient.birthDate" type="date" required />
+            <input type="date" v-model="newPatient.fecha_nacimiento" />
           </label>
           <label>
             Motivo de consulta:
-            <textarea v-model="newPatient.reason" rows="3" class="wide-textarea" required></textarea>
+            <textarea v-model="newPatient.motivo_consulta" />
           </label>
           <label>
             Amnamnesis psiquiátrica:
-            <textarea v-model="newPatient.psychiatricHistory" rows="2"></textarea>
+            <textarea v-model="newPatient.amnesis_psiquiatrica" />
           </label>
           <label>
             Tratamiento:
-            <textarea v-model="newPatient.treatment" rows="2"></textarea>
+            <textarea v-model="newPatient.tratamiento" />
           </label>
           <label>
             Plan terapéutico:
-            <textarea v-model="newPatient.therapeuticPlan" rows="5" class="wide-textarea"></textarea>
+            <textarea v-model="newPatient.plan_terapeutico" />
           </label>
           <label>
             Fecha de ingreso:
-            <input v-model="newPatient.admissionDate" type="date" required />
+            <input type="date" v-model="newPatient.fecha_ingreso" />
           </label>
           <label>
             Eventos:
-            <textarea v-model="newPatient.events" rows="5" class="wide-textarea"></textarea>
+            <textarea v-model="newPatient.eventos" />
           </label>
           <div class="modal-actions">
             <button type="submit" class="modal-save">Guardar</button>
@@ -138,6 +150,8 @@
         </form>
       </div>
     </div>
+
+    
 
     <!-- PANEL DE PERFIL  -->
     <div v-if="showProfileModal">
@@ -173,20 +187,17 @@
     <!-- FIN PANEL PERFIL -->
   </div>
 </template>
-
 <script>
+import jsPDF from 'jspdf'
 export default {
   name: 'PanelPrincipal',
   data() {
     return {
-      patients: [
-        { id: 'P001', name: 'Juan Pérez' },
-        { id: 'P002', name: 'Mariana Osorio' }
-      ],
+      searchQuery: "",
+      usuarios: [],
       showModal: false,
       showProfileModal: false,
-      userName: 'Nombre completo médico',
-      userRole: 'Puesto del médico',
+      error: null,
       newPatient: {
         id: '',
         name: '',
@@ -196,58 +207,191 @@ export default {
         reason: '',
         psychiatricHistory: '',
         treatment: '',
-        therapeuticPlan: '',
-        admissionDate: '',
-        events: ''
+        therapeuticPlan: ''
       }
     }
   },
+  mounted() {
+        this.userName = localStorage.getItem('medicoNombre') || 'Nombre no disponible';
+        this.userRole = localStorage.getItem('medicoPuesto') || 'Rol no disponible';
+        fetch("http://127.0.0.1:8000/pacientes/api/pacientes/lista")
+          .then(response => response.json())
+          .then(data => {
+            this.usuarios = data.pacientes;
+            console.log("Usuarios:", this.usuarios);
+          })
+          .catch(error => {
+            console.error("Error al obtener usuarios:", error);
+            this.error = "Hubo un error al cargar los pacientes.";
+          });
+      },
   methods: {
+    goToPanel() {
+      this.$router.push('/panel');
+    },
+    closeModal() {
+      this.showModal = false;       // Oculta el modal
+      this.resetNewPatient();       // Limpia los campos (opcional, pero útil)
+    },
+
+    
     viewDetails(patient) {
-      alert(`Detalles de: ${patient.name}`);
+      this.$router.push({ name: 'VerDetalles', params: { id: patient.id } });
     },
-    downloadPDF(patient) {
-      alert(`Aquí dse descargaría la historia clínica de ${patient.name} en PDF (implementar la lógica aquí)`);
-    },
+     async downloadPDF(patient) {
+        try {
+          const response = await fetch(patient.url); // 🔁 Aquí se hace la petición al backend
+          if (!response.ok) throw new Error("Error al obtener detalles del paciente");
+
+          const data = await response.json(); // 👈 Aquí sí viene con todos los datos
+
+          const doc = new jsPDF();
+          const fields = {
+            'Nombre': data.nombre_paciente ?? '-',
+            'Edad': data.edad ?? '-',
+            'Género': data.genero ?? '-',
+            'Fecha de nacimiento': data.fecha_nacimiento ?? '-',
+            'Motivo de consulta': data.motivo_consulta ?? '-',
+            'Amnesis psiquiátrica': data.amnesis_psiquiatrica ?? '-',
+            'Tratamiento': data.tratamiento ?? '-',
+            'Plan terapéutico': data.plan_terapeutico ?? '-',
+            'Fecha de ingreso': data.fecha_ingreso ?? '-',
+            'Eventos': Array.isArray(data.eventos) ? data.eventos.join(', ') : '-',
+          };
+
+          let y = 20;
+          doc.setFontSize(16);
+          doc.text('Historia Clínica', 20, y);
+          y += 10;
+
+          doc.setFontSize(12);
+          for (const [label, value] of Object.entries(fields)) {
+            doc.text(`${label}: ${value}`, 20, y);
+            y += 10;
+          }
+
+          const fileName = `${data.nombre_paciente?.replace(/ /g, '_')}_historia_clinica.pdf`;
+          doc.save(fileName);
+        } catch (error) {
+          console.error("Error al generar PDF:", error);
+          alert("No se pudo generar el PDF. Verifica la consola para más detalles.");
+        }
+      }
+
+
+
+      },
+    fetchPacientes() {
+      fetch("http://127.0.0.1:8000/pacientes/api/pacientes/lista")
+        .then(response => response.json())
+        .then(data => {
+          this.usuarios = data.pacientes;
+        })
+        .catch(error => {
+          console.error("Error al obtener pacientes:", error);
+        });
+      },
     removePatient(patient) {
-      if (confirm(`¿Seguro deseas eliminar a ${patient.name}?`)) {
-        this.patients = this.patients.filter(p => p.id !== patient.id);
+      if (confirm(`¿Seguro deseas eliminar a ${patient.nombre_paciente}?`)) {
+        fetch(`http://127.0.0.1:8000/pacientes/api/pacientes/detalles/${patient.id}/`, {
+          method: "DELETE"
+        })
+        .then(async response => {
+          if (!response.ok) {
+            const errorText = await response.text();
+            throw new Error(`HTTP ${response.status} - ${errorText}`);
+          }
+          alert('Paciente eliminado correctamente.');
+
+          // 🔁 Refrescar la lista manualmente SIN redirigir
+          this.fetchPacientes();  // 👈 Vuelve a cargar la lista actualizada
+
+          // (opcional) mantener esto si quieres forzar el re-render visual del componente
+          this.$router.replace({ path: '/panel', query: { t: Date.now() } });
+
+        })
+        .catch(error => {
+          console.error("Error al eliminar:", error);
+          alert("No se pudo eliminar el paciente.");
+        });
       }
     },
     addPatient() {
-      this.showModal = true;
-      this.newPatient = {
-        id: '',
-        name: '',
-        age: '',
-        gender: '',
-        birthDate: '',
-        reason: '',
-        psychiatricHistory: '',
-        treatment: '',
-        therapeuticPlan: '',
-        admissionDate: '',
-        events: ''
-      };
-    },
-    closeModal() {
-      this.showModal = false;
-    },
-    saveNewPatient() {
-      this.patients.push({ ...this.newPatient });
-      this.closeModal();
+      this.resetNewPatient();  // Limpia los campos por si quedaron datos anteriores
+      this.showModal = true;   // Abre el modal para llenar el formulario
     },
     goToSettings() {
-      alert('Ir a Ajustes.');
-      this.showProfileModal = false;
+      this.$router.push('/ajustes');
     },
     logout() {
-      alert('Cerrar sesión (lógica de logout).');
+      // Limpiar los datos del médico en localStorage
+      localStorage.removeItem('medicoId');
+      localStorage.removeItem('medicoNombre');
+      localStorage.removeItem('medicoPuesto');
+      localStorage.removeItem('medicoEmail');
+
+      // Cerrar modal
       this.showProfileModal = false;
+
+      // Redirigir al login
+      window.location.href = '/login';
+    },
+    resetNewPatient() {
+    this.newPatient = {
+      id: '',
+      name: '',
+      age: '',
+      gender: '',
+      birthDate: '',
+      reason: '',
+      psychiatricHistory: '',
+      treatment: '',
+      therapeuticPlan: '',
+      admissionDate: '',
+      events: ''
+    };
+  },
+  saveNewPatient() {
+        fetch("http://localhost:8000/pacientes/api/pacientes/nuevo/", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(this.newPatient)
+        })
+        .then(async response => {
+          if (!response.ok) {
+            const errorData = await response.json();
+            console.error("Detalles del error del backend:", errorData);
+            alert("Error al guardar el paciente:\n" + JSON.stringify(errorData, null, 2));
+            throw new Error("Error al guardar el paciente");
+          }
+          return response.json();
+        })
+        .then(data => {
+          this.usuarios.push(data);
+          this.closeModal();
+        })
+        .catch(error => {
+          console.error("Error general:", error);
+        });
+      },
+      buscarPaciente() {
+        const nombre = this.searchQuery.trim();
+        fetch(`http://localhost:8000/pacientes/api/pacientes/lista/buscar/?nombre=${encodeURIComponent(nombre)}`)
+          .then(response => response.json())
+          .then(data => {
+            this.usuarios = data.pacientes_filtrados || [];
+          })
+          .catch(error => {
+            console.error("Error al buscar pacientes:", error);
+          });
+      }
     }
-  }
-}
+  
+
 </script>
+
 
 <style scoped>
 .panel-principal {

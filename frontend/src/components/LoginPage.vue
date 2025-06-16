@@ -121,6 +121,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   name: 'LoginPage',
   data() {
@@ -136,19 +138,45 @@ export default {
       showHelpModal: false,
       forgotPasswordEmail: '',
       forgotPasswordSent: false
-    }
+    };
   },
   methods: {
     togglePassword() {
       this.showPassword = !this.showPassword;
     },
-    handleLogin() {
-      this.isLoading = true;
-      // Aquí la lógica del login
-      setTimeout(() => {
-        this.isLoading = false;
-      }, 2000);
-    },
+    async handleLogin() {
+        this.isLoading = true;
+        try {
+          const response = await axios.post('http://127.0.0.1:8000/', {
+            id: this.loginForm.id,
+            clave_acceso: this.loginForm.password
+          });
+
+          const medico = response.data.medico;
+
+          console.log('Login exitoso:', medico);
+          alert('Bienvenido Dr. ' + medico.nombre);
+
+          // 🔐 Guardar los datos en localStorage
+          localStorage.setItem('medicoNombre', response.data.medico.nombre);
+          localStorage.setItem('medicoPuesto', response.data.medico.puesto);
+          localStorage.setItem('medicoId', response.data.medico.id);
+          localStorage.setItem('medicoEmail', response.data.medico.email);  
+
+          
+          // Redirigir al panel
+          this.$router.push('/panel');
+
+        } catch (error) {
+          if (error.response?.data?.error) {
+            alert('Error: ' + error.response.data.error);
+          } else {
+            alert('Error desconocido al iniciar sesión');
+          }
+        } finally {
+          this.isLoading = false;
+        }
+      },
     goToForgotPassword() {
       this.showForgotPasswordModal = true;
       this.forgotPasswordSent = false;
@@ -162,10 +190,10 @@ export default {
       // Aquí agregar backend
       setTimeout(() => {
         this.showForgotPasswordModal = false;
-      }, 2500); // Cierra modal después de 2.5s
+      }, 2500);
     }
   }
-}
+};
 </script>
 
 <style scoped>
