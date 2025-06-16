@@ -13,7 +13,6 @@ cd MindSecure
 ---
 
 ## 2. Configurar entorno virtual (opcional pero recomendado)
-```bash
 python -m venv env
 source env/bin/activate      # En Linux/macOS
 env\Scripts\activate         # En Windows
@@ -22,7 +21,7 @@ env\Scripts\activate         # En Windows
 ---
 
 ## 3. Instalar dependencias del backend (desde la raíz del proyecto)
-```bash
+
 pip install -r requirements.txt
 ```
 
@@ -39,14 +38,17 @@ python manage.py loaddata pacientes/fixtures/pacientes_fixture.json
 ---
 
 ## 5. Encriptar claves de los médicos cargados
-```bash
-python manage.py shell < scripts/encriptar_claves_medicos.py
-```
+
+# Para Linux/macOS (usando redirección de entrada a la shell de Django):
+# python manage.py shell < scripts/encriptar_claves_medicos.py
+
+# Para Windows (PowerShell o CMD - ejecutando el script directamente):
+python scripts/encriptar_claves_medicos.py
 
 ---
 
 ## 6. Ejecutar el servidor backend (API)
-```bash
+```
 python manage.py runserver
 ```
 
@@ -57,7 +59,7 @@ Disponible en: [http://localhost:8000](http://localhost:8000)
 ## 7. Ejecutar el frontend (Vue.js)
 
 ### Desde otra terminal:
-```bash
+```
 cd frontend
 npm install
 npm run dev
