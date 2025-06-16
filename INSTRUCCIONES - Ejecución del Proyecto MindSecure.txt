@@ -62,7 +62,7 @@ Disponible en: [http://localhost:8000](http://localhost:8000)
 ```
 cd frontend
 npm install
-npm run dev
+npm run serve
 ```
 
 Disponible en: [http://localhost:5173](http://localhost:5173)
