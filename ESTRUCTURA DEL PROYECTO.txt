@@ -1,6 +1,6 @@
 Mind-Secure/
 ├── manage.py
-├── db.sqlite3                      ← (opcional en desarrollo)
+├── db.sqlite3                      ← (En desarrollo)
 ├── requirements.txt               ← ✅ Backend Django + DRF + DB
 ├── README_DB.md                   ← ✅ Documentación del trabajo de Cristian
 │
@@ -21,7 +21,13 @@ Mind-Secure/
 │   ├── views.py                   ← (desarrollado por Daniel)
 │   ├── tests.py
 │   └── fixtures/
-│       └── medicos_fixture.json   ← ✅ 7 médicos listos para cargar
+│       ├── medicos_fixture.json   ← ✅ 7 médicos listos para cargar
+│   └── migrations/
+│       ├── 0001_inicial.py
+│       ├── 0002_alter_medico_clave_acceso.py
+│       ├── 0003_tokenmedico.py
+│       ├── 0004_delete_tokenmedico.py
+│       └── init.py
 │
 ├── pacientes/
 │   ├── __init__.py
@@ -34,19 +40,39 @@ Mind-Secure/
 │   ├── tests.py
 │   └── fixtures/
 │       └── pacientes_fixture.json ← ✅ 40 pacientes, muchos con eventos
+│   └── migrations/
+│       ├── 0001_inicial.py
+│       ├── 0002_alter_paciente_fecha_ingreso.py
+│       └── init.py
 
 
-
-
-####  PARA ELIANA CREAR: 
-
-│
-├── frontend/                      ← (opcional para Eliana)
-│   ├── package.json               ← Vue + Tailwind
-│   ├── tailwind.config.js         ← (crear con npx tailwindcss init -p)
-│   ├── postcss.config.js          ← (crear automáticamente)
-│   ├── vite.config.js             ← (opcional para Vite)
+├── frontend/
+│   ├── babel.config.js
+│   ├── jsconfig.json
+│   ├── package-lock.json               ← Vue + Tailwind
+│   ├── package.json
+│   ├── postcss.config.js
+│   ├── tailwind.config.js
+│   ├── vue.config.js
+│   └── public/
+│       ├── fabicon.ico
+│       ├── index.html.vue
 │   └── src/
-│       ├── main.js
 │       ├── App.vue
+│       ├── main.js
+│       ├── router.js
+│       └── assets/
+│           ├── bd.png
+│           ├── cerebro.png
+│           ├── logomindsecure.png
+│           ├── main.css
+│           ├── perfil.png
+
 │       └── components/
+│           ├── AjustesDeUsuario.vue
+│           ├── LoginPage.vue
+│           ├── PanelPrincipal.vue
+│           ├── VerDetalles.vue
+
+│       └── services/
+│           ├── api.js
