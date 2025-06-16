@@ -5,7 +5,7 @@ Este documento explica paso a paso cómo instalar y ejecutar el proyecto complet
 ---
 
 ## 1. Clonar el repositorio (una sola vez)
-```bash
+```
 git clone https://github.com/Cdiezlop/MindSecure.git
 cd MindSecure
 ```
