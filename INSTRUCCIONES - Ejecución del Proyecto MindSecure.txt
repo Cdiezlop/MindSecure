@@ -35,18 +35,6 @@ python manage.py loaddata medicos/fixtures/medicos_fixture.json
 python manage.py loaddata pacientes/fixtures/pacientes_fixture.json
 ```
 
----
-
-## 5. Encriptar claves de los médicos cargados
-
-# Para Linux/macOS (usando redirección de entrada a la shell de Django):
-# python manage.py shell < scripts/encriptar_claves_medicos.py
-
-# Para Windows (PowerShell o CMD - ejecutando el script directamente):
-python scripts/encriptar_claves_medicos.py
-
----
-
 ## 6. Ejecutar el servidor backend (API)
 ```
 python manage.py runserver
