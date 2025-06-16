@@ -1,22 +1,26 @@
-# Requerimientos para el backend Django
+# Requerimientos para el backend Django y la base de datos (SQLite)
+
+# Framework principal
 Django>=4.2
+
+# Django REST Framework para crear APIs
 djangorestframework>=3.14
-psycopg2-binary>=2.9.6  # Si se usa PostgreSQL
 
-# Autenticación opcional
-django-allauth>=0.54
-
-# Seguridad y control de permisos
+# Seguridad y autenticación
+python-decouple>=3.8
 django-guardian>=2.4.0
 
-# Almacenamiento (para futuros informes PDF o archivos)
+# Autenticación opcional (si se habilita allauth)
+django-allauth>=0.54
+
+# Almacenamiento futuro (por ejemplo, PDF)
 django-storages>=1.14
 
-# Para manejar variables de entorno (si se usa .env)
-python-decouple>=3.8
+# PostgreSQL (solo si se llega a usar)
+# psycopg2-binary>=2.9.6
 
-# FRONTEND (Eliana)
-# Instalar con npm:
-# npm install vue@3
-# npm install -D tailwindcss postcss autoprefixer
-# npx tailwindcss init -p
+# Permitir peticiones desde el frontend (Vue)
+django-cors-headers>=4.3.0
+
+# NOTA: Instalar con:
+# pip install -r requirements.txt

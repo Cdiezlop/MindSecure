@@ -1,0 +1,77 @@
+# Ejecución del Proyecto MindSecure
+
+Este documento explica paso a paso cómo instalar y ejecutar el proyecto completo MindSecure, tanto el backend (Django + DRF) como el frontend (Vue + Tailwind).
+
+---
+
+## 1. Clonar el repositorio (una sola vez)
+```bash
+git clone https://github.com/Cdiezlop/MindSecure.git
+cd MindSecure
+```
+
+---
+
+## 2. Configurar entorno virtual (opcional pero recomendado)
+```bash
+python -m venv env
+source env/bin/activate      # En Linux/macOS
+env\Scripts\activate         # En Windows
+```
+
+---
+
+## 3. Instalar dependencias del backend (desde la raíz del proyecto) (cd Mindsecure)
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+## 4. Aplicar migraciones y cargar datos de ejemplo
+```bash
+python manage.py makemigrations
+python manage.py migrate
+python manage.py loaddata medicos/fixtures/medicos_fixture.json
+python manage.py loaddata pacientes/fixtures/pacientes_fixture.json
+```
+
+---
+
+## 5. Encriptar claves de los médicos cargados
+```bash
+python manage.py shell < scripts/encriptar_claves_medicos.py
+```
+
+---
+
+## 6. Ejecutar el servidor backend (API) (cd Mindsecure)
+```bash
+python manage.py runserver
+```
+
+Disponible en: [http://localhost:8000](http://localhost:8000)
+
+---
+
+## 7. Ejecutar el frontend (Vue.js) (cd Mindsecure)
+
+### Desde otra terminal:
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Disponible en: [http://localhost:5173](http://localhost:5173)
+
+---
+
+## Notas adicionales
+- El sistema usa base de datos SQLite (ya configurada por defecto).
+- Las contraseñas de los médicos deben coincidir con el número de cédula (ej. 1036967493) y ser cifradas usando el script.
+- Se recomienda usar navegadores modernos como Chrome o Firefox.
+
+---
+
+**Proyecto MindSecure** – Universidad de Antioquia – Grupo de desarrollo Cristian, Daniel y Eliana.
