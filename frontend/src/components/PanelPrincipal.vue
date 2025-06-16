@@ -187,6 +187,7 @@
     <!-- FIN PANEL PERFIL -->
   </div>
 </template>
+
 <script>
 import jsPDF from 'jspdf'
 export default {
@@ -199,16 +200,18 @@ export default {
       showProfileModal: false,
       error: null,
       newPatient: {
-        id: '',
-        name: '',
-        age: '',
-        gender: '',
-        birthDate: '',
-        reason: '',
-        psychiatricHistory: '',
-        treatment: '',
-        therapeuticPlan: ''
-      }
+      id: '',
+      nombre_paciente: '',
+      edad: '',
+      genero: '',
+      fecha_nacimiento: '',
+      motivo_consulta: '',
+      amnesis_psiquiatrica: '',
+      tratamiento: '',
+      plan_terapeutico: '',
+      fecha_ingreso: '',
+      eventos: ''
+    }
     }
   },
   mounted() {
@@ -239,49 +242,64 @@ export default {
       this.$router.push({ name: 'VerDetalles', params: { id: patient.id } });
     },
      async downloadPDF(patient) {
-        try {
-          const response = await fetch(patient.url); // 🔁 Aquí se hace la petición al backend
-          if (!response.ok) throw new Error("Error al obtener detalles del paciente");
+  try {
+    const response = await fetch(patient.url);
+    if (!response.ok) throw new Error("Error al obtener detalles del paciente");
 
-          const data = await response.json(); // 👈 Aquí sí viene con todos los datos
+    const data = await response.json();
 
-          const doc = new jsPDF();
-          const fields = {
-            'Nombre': data.nombre_paciente ?? '-',
-            'Edad': data.edad ?? '-',
-            'Género': data.genero ?? '-',
-            'Fecha de nacimiento': data.fecha_nacimiento ?? '-',
-            'Motivo de consulta': data.motivo_consulta ?? '-',
-            'Amnesis psiquiátrica': data.amnesis_psiquiatrica ?? '-',
-            'Tratamiento': data.tratamiento ?? '-',
-            'Plan terapéutico': data.plan_terapeutico ?? '-',
-            'Fecha de ingreso': data.fecha_ingreso ?? '-',
-            'Eventos': Array.isArray(data.eventos) ? data.eventos.join(', ') : '-',
-          };
+    const doc = new jsPDF();
+    let y = 20;
 
-          let y = 20;
-          doc.setFontSize(16);
-          doc.text('Historia Clínica', 20, y);
-          y += 10;
+    doc.setFontSize(16);
+    doc.text('Historia Clínica', 20, y);
+    y += 10;
 
-          doc.setFontSize(12);
-          for (const [label, value] of Object.entries(fields)) {
-            doc.text(`${label}: ${value}`, 20, y);
-            y += 10;
-          }
+    const fields = {
+      'Nombre': data.nombre_paciente ?? '-',
+      'Edad': data.edad ?? '-',
+      'Género': data.genero ?? '-',
+      'Fecha de nacimiento': data.fecha_nacimiento ?? '-',
+      'Motivo de consulta': data.motivo_consulta ?? '-',
+      'Amnesis psiquiátrica': data.amnesis_psiquiatrica ?? '-',
+      'Tratamiento': data.tratamiento ?? '-',
+      'Plan terapéutico': data.plan_terapeutico ?? '-',
+      'Fecha de ingreso': data.fecha_ingreso ?? '-',
+    };
 
-          const fileName = `${data.nombre_paciente?.replace(/ /g, '_')}_historia_clinica.pdf`;
-          doc.save(fileName);
-        } catch (error) {
-          console.error("Error al generar PDF:", error);
-          alert("No se pudo generar el PDF. Verifica la consola para más detalles.");
-        }
-      }
+    doc.setFontSize(12);
+    for (const [label, value] of Object.entries(fields)) {
+      doc.text(`${label}: ${value}`, 20, y);
+      y += 10;
+    }
 
+    // Eventos
+    doc.text(`Eventos:`, 20, y);
+    y += 8;
 
+    if (Array.isArray(data.eventos) && data.eventos.length > 0) {
+      data.eventos.forEach((ev) => {
+        const eventoText = `- [${ev.fecha}] ${ev.medico}: ${ev.observacion}`;
+        const lines = doc.splitTextToSize(eventoText, 170); // ajusta ancho
+        doc.text(lines, 25, y);
+        y += lines.length * 8; // espacio por cada línea
+      });
+    } else {
+      doc.text('- Sin eventos registrados.', 25, y);
+      y += 10;
+    }
 
-      },
-    fetchPacientes() {
+    const fileName = `${data.nombre_paciente?.replace(/ /g, '_')}_historia_clinica.pdf`;
+    doc.save(fileName);
+
+  } catch (error) {
+    console.error("Error al generar PDF:", error);
+    alert("No se pudo generar el PDF. Verifica la consola para más detalles.");
+  }
+}
+
+,
+fetchPacientes() {
       fetch("http://127.0.0.1:8000/pacientes/api/pacientes/lista")
         .then(response => response.json())
         .then(data => {
@@ -317,8 +335,8 @@ export default {
       }
     },
     addPatient() {
-      this.resetNewPatient();  // Limpia los campos por si quedaron datos anteriores
-      this.showModal = true;   // Abre el modal para llenar el formulario
+      this.resetNewPatient();
+      this.showModal = true;
     },
     goToSettings() {
       this.$router.push('/ajustes');
@@ -337,20 +355,21 @@ export default {
       window.location.href = '/login';
     },
     resetNewPatient() {
-    this.newPatient = {
-      id: '',
-      name: '',
-      age: '',
-      gender: '',
-      birthDate: '',
-      reason: '',
-      psychiatricHistory: '',
-      treatment: '',
-      therapeuticPlan: '',
-      admissionDate: '',
-      events: ''
-    };
-  },
+  this.newPatient = {
+    id: '',
+    nombre_paciente: '',
+    edad: '',
+    genero: '',
+    fecha_nacimiento: '',
+    motivo_consulta: '',
+    amnesis_psiquiatrica: '',
+    tratamiento: '',
+    plan_terapeutico: '',
+    fecha_ingreso: '',
+    eventos: ''
+  };
+}
+,
   saveNewPatient() {
         fetch("http://localhost:8000/pacientes/api/pacientes/nuevo/", {
           method: "POST",
@@ -388,6 +407,10 @@ export default {
           });
       }
     }
+
+
+      }
+    
   
 
 </script>
