@@ -1,26 +1,34 @@
 # Requerimientos para el backend Django y la base de datos (SQLite)
 
-# Framework principal
+# Framework principal de desarrollo web
 Django>=4.2
 
-# Django REST Framework para crear APIs
+# Extensión para construir APIs RESTful con Django
 djangorestframework>=3.14
 
-# Seguridad y autenticación
+# Gestión de configuraciones sensibles y variables de entorno
 python-decouple>=3.8
+
+# Manejo avanzado de permisos de objetos
 django-guardian>=2.4.0
 
-# Autenticación opcional (si se habilita allauth)
+# Autenticación (si se habilita django-allauth para gestión de usuarios)
+# Aunque está listado, verifica si realmente lo estás usando en tu proyecto.
+# Si solo usas la autenticación básica de Django, podrías no necesitarlo.
 django-allauth>=0.54
 
-# Almacenamiento futuro (por ejemplo, PDF)
+# Soporte para almacenamiento de archivos en servicios de nube (ej. Amazon S3, Google Cloud Storage)
+# Útil si se planea manejar archivos subidos por usuarios (ej. PDFs de historias clínicas).
 django-storages>=1.14
 
-# PostgreSQL (solo si se llega a usar)
+# Adaptador para PostgreSQL (base de datos relacional robusta para producción)
+# Descomentar solo si decides migrar de SQLite a PostgreSQL en el futuro.
 # psycopg2-binary>=2.9.6
 
-# Permitir peticiones desde el frontend (Vue)
+# Middleware para permitir peticiones de recursos de origen cruzado (CORS)
+# Esencial para que el frontend (Vue) pueda comunicarse con el backend (Django API) en diferentes puertos/dominios.
 django-cors-headers>=4.3.0
 
-# NOTA: Instalar con:
+# NOTA: Para instalar todas las dependencias, usa el siguiente comando:
 # pip install -r requirements.txt
+
