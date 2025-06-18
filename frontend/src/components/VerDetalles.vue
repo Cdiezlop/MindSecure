@@ -387,8 +387,7 @@ export default {
       this.$router.push('/panel');
     },
     goToSettings() {
-      alert('Ir a Ajustes (aquí puedes navegar o mostrar otra vista).');
-      this.showProfileModal = false;
+      this.$router.push('/ajustes');
     },
     logout() {
         // Limpiar los datos del médico en localStorage
