@@ -140,8 +140,36 @@
             <input type="date" v-model="newPatient.fecha_ingreso" />
           </label>
           <label>
+    <!-- MODAL para agregar evento -->
+     <div v-if="showEventModal" class="modal-overlay">
+      <div class="modal">
+        <button class="modal-close" @click="cerrarModalEvento">&times;</button>
+        <h2 class="modal-title">Agregar evento</h2>
+        <label>
+          Fecha:
+          <input type="date" v-model="newEvent.fecha" required>
+        </label>
+        <label>
+          Nombre del médico:
+          <input v-model="newEvent.medico" required>
+        </label>
+        <label>
+          Observación:
+          <textarea v-model="newEvent.observacion" required rows="3"></textarea>
+        </label>
+        <div class="modal-actions">
+          <button type="button" class="modal-save" @click="guardarEvento">Guardar</button>
+          <button type="button" class="modal-cancel" @click="cerrarModalEvento">Cancelar</button>
+        </div>
+      </div>
+    </div>
+
             Eventos:
-            <textarea v-model="newPatient.eventos" />
+            <textarea v-model="eventosComoTexto" readonly rows="2" style="background:#f4f4f4; color:#333;" />
+            <button type="button" class="modal-save" @click="abrirModalEvento" style="margin-top:6px;">
+              Agregar evento
+            </button>
+            
           </label>
           <div class="modal-actions">
             <button type="submit" class="modal-save">Guardar</button>
@@ -210,8 +238,14 @@ export default {
       tratamiento: '',
       plan_terapeutico: '',
       fecha_ingreso: '',
-      eventos: ''
-    }
+      eventos: []
+    },
+      showEventModal: false,
+      newEvent: {                      
+      fecha: '',
+      medico: '',
+      observacion: ''
+    },
     }
   },
   mounted() {
@@ -236,6 +270,22 @@ export default {
       this.showModal = false;       // Oculta el modal
       this.resetNewPatient();       // Limpia los campos (opcional, pero útil)
     },
+    abrirModalEvento() {
+      this.newEvent = { fecha: '', medico: '', observacion: '' }; 
+      this.showEventModal = true;
+    },
+    cerrarModalEvento() {
+      this.showEventModal = false;
+    },
+    guardarEvento() {
+      if (!this.newEvent.fecha || !this.newEvent.medico || !this.newEvent.observacion) {
+        alert("Completa todos los campos del evento.");
+        return;
+      }
+      this.newPatient.eventos.push({ ...this.newEvent }); 
+      this.showEventModal = false;
+    },
+
 
     
     viewDetails(patient) {
@@ -366,7 +416,7 @@ fetchPacientes() {
     tratamiento: '',
     plan_terapeutico: '',
     fecha_ingreso: '',
-    eventos: ''
+    eventos: []
   };
 }
 ,
@@ -405,8 +455,17 @@ fetchPacientes() {
           .catch(error => {
             console.error("Error al buscar pacientes:", error);
           });
-      }
-    }
+  }
+},
+computed: {
+  eventosComoTexto() {
+    if (!this.newPatient.eventos || !this.newPatient.eventos.length) return "";
+    return this.newPatient.eventos
+    .map(ev => `[${ev.fecha}] ${ev.medico}: ${ev.observacion}`)
+    .join('\n');
+  }
+},
+
 
 
       }

@@ -89,13 +89,25 @@
             <div class="detail-label">Fecha de ingreso:</div>
             <div class="detail-value">{{ patient.fecha_ingreso }}</div>
           </div>
-
+          
           <div class="detail-row last-row">
             <div class="detail-label">Eventos:</div>
             <div class="detail-value">
-              <pre>{{ patient.eventos }}</pre>
+              <template v-if="patient.eventos && patient.eventos.length">
+                <ul style="padding-left: 18px;">
+                  <li v-for="(evento, idx) in patient.eventos" :key="idx" style="margin-bottom: 8px;">
+                    <b>Fecha:</b> {{ evento.fecha }}<br>
+                    <b>Médico:</b> {{ evento.medico }}<br>
+                    <b>Observación:</b> {{ evento.observacion }}
+                  </li>
+                </ul>
+                </template>
+                <template v-else>
+                  <span>No hay eventos registrados.</span>
+                </template>
+              </div>
             </div>
-          </div>
+
           </div>
           
 
@@ -187,7 +199,22 @@
 
           <label v-if="editedPatient.eventos">
             Eventos:
-            <textarea v-model="editedPatient.eventos"></textarea>
+            <div v-if="editedPatient.eventos && editedPatient.eventos.length">
+              <ul style="padding-left: 16px;">
+                <li v-for="(evento, i) in editedPatient.eventos" :key="i">
+                  <b>Fecha:</b> {{ evento.fecha }}<br>
+                  <b>Médico:</b> {{ evento.medico }}<br>
+                  <b>Observación:</b> {{ evento.observacion }}
+                </li>
+              </ul>
+            </div>
+            <div v-else>
+              <span style="color:#666;">No hay eventos registrados.</span>
+            </div>
+            <!-- Botón para abrir el modal de agregar evento -->
+             <button type="button" class="modal-save" @click="abrirModalEvento" style="width:100%;margin-top:12px;">
+              Agregar evento
+            </button>
           </label>
 
           <div class="modal-actions">
@@ -197,6 +224,30 @@
         </form>
       </div>
     </div>
+    <!-- MODAL para agregar evento -->
+     <div v-if="showEventModal" class="modal-overlay">
+      <div class="modal">
+        <button class="modal-close" @click="cerrarModalEvento">&times;</button>
+        <h2 class="modal-title">Agregar evento</h2>
+        <label>
+          Fecha:
+          <input type="date" v-model="newEvent.fecha" required>
+        </label>
+        <label>
+          Nombre del médico:
+          <input v-model="newEvent.medico" required>
+        </label>
+        <label>
+          Observación:
+          <textarea v-model="newEvent.observacion" required rows="3"></textarea>
+        </label>
+        <div class="modal-actions">
+          <button type="button" class="modal-save" @click="guardarEvento">Guardar</button>
+          <button type="button" class="modal-cancel" @click="cerrarModalEvento">Cancelar</button>
+        </div>
+      </div>
+    </div>
+
 
     <!-- PANEL DE PERFIL simplificado -->
     <div v-if="showProfileModal">
@@ -244,6 +295,12 @@ export default {
       userName: 'Nombre completo médico',
       userRole: 'Puesto del médico',
       patient: null,
+      showEventModal: false,
+      newEvent: {
+        fecha: '',
+        medico: '',
+        observacion: ''
+      },
       editedPatient: {
         id: '',
         nombre_paciente: '',
@@ -255,7 +312,7 @@ export default {
         tratamiento: '',
         plan_terapeutico: '',
         fecha_ingreso: '',
-        eventos: ''
+        eventos: []
       }
     }
   },
@@ -299,23 +356,30 @@ export default {
     },
     
     editPatient() {
-        console.log("Paciente recibido:", this.patient);
-
-        this.editedPatient = {
-          id: this.patient.id,
-          nombre_paciente: this.patient.nombre_paciente,
-          edad: this.patient.edad,
-          genero: this.patient.genero,
-          fecha_nacimiento: this.patient.fecha_nacimiento,
-          motivo_consulta: this.patient.motivo_consulta,
-          amnesis_psiquiatrica: this.patient.amnesis_psiquiatrica,
-          tratamiento: this.patient.tratamiento,
-          plan_terapeutico: this.patient.plan_terapeutico,
-          fecha_ingreso: this.patient.fecha_ingreso || '',
-          eventos: typeof this.patient.eventos === 'object'
-            ? JSON.stringify(this.patient.eventos, null, 2)
-            : this.patient.eventos || ''
-        };
+      let eventosArray = [];
+      if (Array.isArray(this.patient.eventos)) {
+        eventosArray = this.patient.eventos;
+      } else if (typeof this.patient.eventos === 'string') {
+        try {
+          eventosArray = JSON.parse(this.patient.eventos) || [];
+        } catch {
+          eventosArray = [];
+        }
+      }
+      this.editedPatient = {
+        id: this.patient.id,
+        nombre_paciente: this.patient.nombre_paciente,
+        edad: this.patient.edad,
+        genero: this.patient.genero,
+        fecha_nacimiento: this.patient.fecha_nacimiento,
+        motivo_consulta: this.patient.motivo_consulta,
+        amnesis_psiquiatrica: this.patient.amnesis_psiquiatrica,
+        tratamiento: this.patient.tratamiento,
+        plan_terapeutico: this.patient.plan_terapeutico,
+        fecha_ingreso: this.patient.fecha_ingreso || '',
+        eventos: eventosArray
+      };
+    // Removed misplaced line causing syntax error
 
         this.showEditModal = true;
       },
@@ -323,27 +387,21 @@ export default {
       this.showEditModal = false;
     },
     saveEditedPatient() {
-        const id = this.editedPatient.id;
-
-        const payload = {
-            id: id,
-            nombre_paciente: this.editedPatient.nombre_paciente,
-            edad: this.editedPatient.edad,
-            genero: this.editedPatient.genero,
-            fecha_nacimiento: this.editedPatient.fecha_nacimiento,
-            motivo_consulta: this.editedPatient.motivo_consulta,
-            amnesis_psiquiatrica: this.editedPatient.amnesis_psiquiatrica,
-            tratamiento: this.editedPatient.tratamiento,
-            plan_terapeutico: this.editedPatient.plan_terapeutico,
-            fecha_ingreso: this.editedPatient.fecha_ingreso || new Date().toISOString().split('T')[0],
-            eventos: (() => {
-              try {
-                return JSON.parse(this.editedPatient.eventos);
-              } catch {
-                return this.editedPatient.eventos || [];
-              }
-            })()
-          };
+      const id = this.editedPatient.id;
+      const payload = {
+        id: id,
+        nombre_paciente: this.editedPatient.nombre_paciente,
+        edad: this.editedPatient.edad,
+        genero: this.editedPatient.genero,
+        fecha_nacimiento: this.editedPatient.fecha_nacimiento,
+        motivo_consulta: this.editedPatient.motivo_consulta,
+        amnesis_psiquiatrica: this.editedPatient.amnesis_psiquiatrica,
+        tratamiento: this.editedPatient.tratamiento,
+        plan_terapeutico: this.editedPatient.plan_terapeutico,
+        fecha_ingreso: this.editedPatient.fecha_ingreso || new Date().toISOString().split('T')[0],
+        eventos: this.editedPatient.eventos   
+      };
+    
 
         fetch(`http://127.0.0.1:8000/pacientes/api/pacientes/detalles/${id}/`, {
           method: "PUT",
@@ -401,9 +459,35 @@ export default {
 
         // Redirigir al login
         window.location.href = '/login';
+      },
+    abrirModalEvento() {
+      this.newEvent = { fecha: '', medico: '', observacion: '' }
+      this.showEventModal = true;
+    },
+    cerrarModalEvento() {
+      this.showEventModal = false;
+    },
+    guardarEvento() {
+      if (typeof this.editedPatient.eventos === 'string') {
+        try {
+          this.editedPatient.eventos = JSON.parse(this.editedPatient.eventos) || [];
+        } catch {
+          this.editedPatient.eventos = [];
+        }
       }
-
+      if (!this.newEvent.fecha || !this.newEvent.medico || !this.newEvent.observacion) {
+        alert('Completa todos los campos del evento');
+        return;
   }
+  this.editedPatient.eventos.push({ ...this.newEvent });
+  this.showEventModal = false;
+},
+eventosComoTexto() {
+  if (!Array.isArray(this.editedPatient.eventos)) return '';
+  return this.editedPatient.eventos.map(ev => `[${ev.fecha}] ${ev.medico}: ${ev.observacion}`).join('\n');
+},
+}
+
 }
 </script>
 
